@@ -1,0 +1,14 @@
+.user-profile-image {
+    width:100px;
+    height:100px;
+    object-fit:cover;
+}
+
+.user-profile-image-upload-btn {
+    width:32px;
+    height:32px;
+    cursor:pointer;
+    bottom:0;
+    right:0;
+    transform: translate(25%,25%)
+}

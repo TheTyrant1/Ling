@@ -1,0 +1,36 @@
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--bs-body-bg);
+
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    &--hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+}
+
+.loader__spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    border: 5px solid rgb(255, 255, 255);
+    border-top-color:  #2E937A;
+
+    animation: loader-spin 0.75s linear infinite;
+}
+
+@keyframes loader-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

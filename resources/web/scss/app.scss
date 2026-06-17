@@ -1,0 +1,23 @@
+// Node_modules plugins
+@use "bootstrap/scss/bootstrap";
+@use "lenis/dist/lenis.css";
+@use '@fortawesome/fontawesome-free/css/all.min.css';
+
+
+//Base
+@use "base/fonts";
+
+//Layout
+@use "layout/header";
+@use "layout/footer";
+
+//Abstracts
+@use "abstracts/variables";
+
+//Components
+@use "components/loader";
+@use "components/select";
+
+//Pages
+@use "pages/main-page";
+@use "pages/tag-page";

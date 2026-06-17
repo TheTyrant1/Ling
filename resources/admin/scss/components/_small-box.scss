@@ -1,0 +1,109 @@
+.small-box {
+    position: relative;
+    display: block;
+    margin-bottom: 1.25rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 0 1px rgba(var(--bs-body-color-rgb), .125), 0 1px 3px rgba(var(--bs-body-color-rgb), .2);
+
+    --bs-link-color-rgb: none;
+    --bs-link-hover-color-rgb: none;
+    --bs-heading-color: none;
+}
+
+.small-box > .inner {
+    padding: 10px;
+}
+
+.small-box .small-box-footer {
+    position: relative;
+    z-index: 10;
+    display: block;
+    padding: 3px 0;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.07);
+    text-decoration: none;
+}
+
+.small-box .small-box-footer:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.small-box h3 {
+    font-size: 2.2rem;
+    padding: 0;
+    margin: 0 0 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.small-box-stat-number {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+.small-box p {
+    font-size: 1rem;
+}
+
+.small-box p > small {
+    display: block;
+    margin-top: 5px;
+    font-size: .9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.small-box h3,
+.small-box p {
+    z-index: 5;
+}
+
+.small-box .small-box-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 0;
+    height: 70px;
+    font-size: 70px;
+    color: rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s linear;
+}
+
+.small-box:hover .small-box-icon {
+    transform: scale(1.1);
+}
+
+@media (min-width: 992px) {
+    .col-xl-2 .small-box h3,
+    .col-lg-2 .small-box h3,
+    .col-md-2 .small-box h3,
+    .col-xl-3 .small-box h3,
+    .col-lg-3 .small-box h3,
+    .col-md-3 .small-box h3 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-xl-2 .small-box h3,
+    .col-lg-2 .small-box h3,
+    .col-md-2 .small-box h3,
+    .col-xl-3 .small-box h3,
+    .col-lg-3 .small-box h3,
+    .col-md-3 .small-box h3 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .small-box {
+        text-align: center;
+    }
+
+    .small-box .small-box-icon {
+        display: none;
+    }
+
+    .small-box p {
+        font-size: 12px;
+    }
+}

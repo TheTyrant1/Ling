@@ -1,0 +1,115 @@
+.ql-toolbar.ql-snow {
+    border-radius: var(--bs-border-radius, 0.375rem);
+    background-color: var(--bs-tertiary-bg, #f8f9fa);
+    border: 1px solid var(--bs-border-color, #dee2e6);
+}
+
+.ql-container.ql-snow {
+    border-radius: var(--bs-border-radius, 0.375rem);
+    background-color: var(--bs-body-bg, #fff);
+    color: var(--bs-body-color);
+    border: 1px solid var(--bs-border-color, #dee2e6) !important; /* Додано !important, щоб повернути верхній бордер */
+    font-family: var(--bs-body-font-family);
+    margin-top: 8px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.ql-container .ql-editor {
+    border-radius: calc(var(--bs-border-radius, 0.375rem) - 1px);
+}
+
+.ql-container.ql-snow:has(.ql-editor:focus) {
+    border-color: #86b7fe !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+}
+
+.ql-editor::before {
+    color: var(--bs-secondary-color, #6c757d) !important;
+    font-style: normal !important;
+}
+
+.ql-snow .ql-picker-label {
+    border-radius: var(--bs-border-radius, 0.375rem);
+    border-color: transparent !important;
+}
+
+.ql-snow .ql-picker-label:hover,
+.ql-snow .ql-picker.ql-expanded .ql-picker-label {
+    border-color: transparent !important;
+    background-color: var(--bs-secondary-bg, #e9ecef);
+}
+
+.ql-snow .ql-picker-options {
+    border-radius: var(--bs-border-radius, 0.375rem);
+}
+
+.ql-snow .ql-picker-options .ql-picker-item {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-radius: var(--bs-border-radius-sm, 0.375rem);
+}
+
+[data-bs-theme="dark"] .ql-snow .ql-stroke {
+    stroke: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .ql-snow .ql-fill {
+    fill: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .ql-snow .ql-picker {
+    color: var(--bs-body-color);
+}
+
+[data-bs-theme="dark"] .ql-picker {
+    color: #eaeaea;
+}
+
+[data-bs-theme="dark"] .ql-snow .ql-picker-options {
+    background-color: var(--bs-dropdown-bg, #212529) !important;
+    border-color: var(--bs-dropdown-border-color, #495057) !important;
+    color: var(--bs-dropdown-link-color, #dee2e6) !important;
+    box-shadow: var(--bs-dropdown-box-shadow) !important;
+    opacity: 1 !important;
+}
+
+[data-bs-theme="dark"] .ql-snow .ql-picker-options .ql-picker-item:hover {
+    color: var(--bs-dropdown-link-hover-color, #fff) !important;
+    background-color: var(--bs-dropdown-link-hover-bg, #343a40) !important;
+}
+
+[data-bs-theme="dark"] .ql-snow.ql-toolbar button:hover,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar button:hover,
+[data-bs-theme="dark"] .ql-snow.ql-toolbar button.ql-active,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar button.ql-active,
+[data-bs-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label:hover,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar .ql-picker-label:hover,
+[data-bs-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label.ql-active,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar .ql-picker-label.ql-active {
+    color: var(--bs-link-hover-color);
+}
+
+[data-bs-theme="dark"] .ql-snow.ql-toolbar button:hover .ql-stroke,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar button:hover .ql-stroke,
+[data-bs-theme="dark"] .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar button.ql-active .ql-stroke,
+[data-bs-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label:hover .ql-stroke,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar .ql-picker-label:hover .ql-stroke,
+[data-bs-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-stroke,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-stroke {
+    stroke: var(--bs-link-hover-color);
+}
+
+[data-bs-theme="dark"] .ql-snow.ql-toolbar button:hover .ql-fill,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar button:hover .ql-fill,
+[data-bs-theme="dark"] .ql-snow.ql-toolbar button.ql-active .ql-fill,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar button.ql-active .ql-fill,
+[data-bs-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label:hover .ql-fill,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar .ql-picker-label:hover .ql-fill,
+[data-bs-theme="dark"] .ql-snow.ql-toolbar .ql-picker-label.ql-active .ql-fill,
+[data-bs-theme="dark"] .ql-snow .ql-toolbar .ql-picker-label.ql-active .ql-fill {
+    fill: var(--bs-link-hover-color);
+}

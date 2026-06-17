@@ -1,0 +1,35 @@
+//Node_modules plugins
+
+//Bootstrap
+@use "bootstrap/scss/bootstrap";
+//Font awesome
+@use '@fortawesome/fontawesome-free/css/all.min.css';
+
+
+//Layouts
+@use "layout/app-wrapper";
+@use "layout/app-header";
+@use "layout/container-fluid";
+@use "layout/app-sidebar";
+@use "layout/app-content-header";
+@use "layout/app-content";
+@use "layout/app-main";
+@use "layout/app-footer";
+
+//Abstracts
+@use "abstracts/colors";
+
+//Components
+@use "components/loader";
+@use "components/dropdown";
+@use "components/cards";
+@use "components/table";
+@use "components/small-box";
+@use "components/buttons";
+
+//Themes
+@use "themes/quill-dark-mode-support";
+
+//Base
+@use "base/typography";
+@use "base/reset";
