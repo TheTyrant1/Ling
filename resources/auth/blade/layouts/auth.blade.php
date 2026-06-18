@@ -14,7 +14,7 @@
     <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-xl">
         <div class="flex justify-center">
             <a href="{{ route('post.index') }}">
-                <img src="{{ asset('assets/auth/images/logo.svg') }}" alt="Ling" class="object-contain">
+                <img src="{{ asset('assets/auth/images/logo/logo.svg') }}" alt="Ling" class="object-contain">
             </a>
         </div>
         @yield('content')

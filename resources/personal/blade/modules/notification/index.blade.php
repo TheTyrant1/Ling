@@ -62,7 +62,7 @@
                                                                 class="me-2 me-md-3 rounded-circle border table-user-image">
                                                         @else
                                                             <img
-                                                                src="{{ asset('assets/personal/images/system.jpg') }}"
+                                                                src="{{ asset('assets/personal/images/system/system.jpg') }}"
                                                                 alt="System image"
                                                                 class="me-2 me-md-3 rounded-circle border table-user-image">
                                                         @endif

@@ -9,11 +9,12 @@
     @vite(['resources/web/scss/app.scss', 'resources/web/js/app.js'])
 </head>
 
+<body>
+
 <div class="loader">
     <div class="loader__spinner"></div>
 </div>
 
-<body>
 <header class="header">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">

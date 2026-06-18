@@ -20,11 +20,12 @@
     @vite(['resources/personal/scss/app.scss', 'resources/personal/js/app.js'])
 </head>
 
+<body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
+
 <div class="app-loader">
     <div class="app-loader__spinner"></div>
 </div>
 
-<body class="layout-fixed fixed-header sidebar-expand-lg bg-body-tertiary">
 <div class="app-wrapper">
     <nav class="app-header navbar navbar-expand bg-body">
         <div class="container-fluid">
