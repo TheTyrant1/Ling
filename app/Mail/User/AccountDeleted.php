@@ -24,6 +24,6 @@ class AccountDeleted extends Mailable implements ShouldQueue
     {
         return $this
             ->subject('Account deactivation')
-            ->markdown('personal::blade.mails.account-deleted');
+            ->view('personal::blade.mails.account-deleted');
     }
 }

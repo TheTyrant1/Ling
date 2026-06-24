@@ -14,16 +14,29 @@ export default class ThemeSwitcher {
     }
 
     setTheme(theme) {
-        const targetTheme = theme === "auto" && window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
+        const targetTheme = theme === "auto"
+            ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
             : theme;
+
         document.documentElement.setAttribute("data-bs-theme", targetTheme);
+
+        const favicon = document.getElementById('app-favicon');
+        if (favicon) {
+            let currentHref = favicon.href;
+            if (targetTheme === 'dark') {
+                favicon.href = currentHref.replace('favicon-light.svg', 'favicon-dark.svg');
+            } else {
+                favicon.href = currentHref.replace('favicon-dark.svg', 'favicon-light.svg');
+            }
+        }
     }
 
     showActiveTheme(theme, focus = false) {
         if (!this.themeSwitcher) return;
 
         const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`);
+        if (!btnToActive) return;
+
         const iconClass = btnToActive.querySelector("i").getAttribute("class");
 
         document.querySelectorAll("[data-bs-theme-value]").forEach(element => {

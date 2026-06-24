@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Personal\Profile;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Personal\User\UpdateRequest;
+use App\Mail\User\AccountUpdated;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class UpdateController extends Controller
@@ -25,11 +27,15 @@ class UpdateController extends Controller
         if ($request->filled('current_password') && $request->filled('new_password')) {
             $user->password = Hash::make($request->new_password);
             $user->save();
+            Mail::to($user->email)->send(new AccountUpdated($user));
+
             return back()->with('success', 'Password updated successfully!');
         }
 
         if ($request->hasAny(['name', 'email'])) {
-            $user->fill($request->only('name','email'))->save();
+            $user->fill($request->only('name', 'email'))->save();
+            Mail::to($user->email)->send(new AccountUpdated($user));
+
             return back()->with('success', 'Profile information updated!');
         }
 

@@ -1,0 +1,237 @@
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem 2rem;
+    width: 100%;
+}
+
+.post-card {
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    width: 100%;
+
+    .post-card__title,
+    .post-card__tag,
+    .post-card__date {
+        color: #555;
+        transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+    }
+
+    .views-count,
+    .likes-count,
+    .saves-count {
+        color: #555;
+        transition: color 0.25s ease-in-out;
+    }
+
+    i {
+        color: #555;
+        transition: color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+    }
+
+    &__media {
+        width: 100%;
+        height: 220px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        margin-bottom: 1rem;
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    &__author {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 50px;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #ffffff;
+        font-family: "Roboto", sans-serif;
+        font-size: 13px;
+        text-decoration: none;
+        z-index: 5;
+        transition: background-color 0.2s ease;
+
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+            flex-shrink: 0;
+        }
+
+        span {
+            color: #ffffff !important;
+        }
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    &__tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    &__tag {
+        font-family: "Roboto", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 3px 10px;
+        background-color: #f5f5f5;
+        border: 1px solid #e5e5e5;
+        border-radius: 50px;
+        text-decoration: none;
+
+        &.count {
+            cursor: default;
+        }
+    }
+
+    &__date {
+        font-family: "Roboto", sans-serif;
+        font-size: 13px;
+    }
+
+    &__title-link {
+        text-decoration: none;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    &__title {
+        font-family: "Roboto", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1.4;
+        margin: 0;
+    }
+
+    &__controls {
+        display: flex;
+        align-items: center;
+        gap: 0.80rem;
+        font-size: 17px;
+        font-family: "Roboto", sans-serif;
+        color: #555;
+        transition: color 0.25s ease-in-out;
+
+        form {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: inherit;
+
+            &:hover {
+                .post-card__action-btn {
+                    background-color: rgba(0, 0, 0, 0.08);
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    &__stat {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 34px;
+        color: inherit;
+        font-family: "Roboto", sans-serif;
+        font-size: 14px;
+
+        i {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 17px;
+            color: inherit;
+        }
+
+        &--clickable {
+            cursor: pointer;
+
+            &:hover {
+                .post-card__action-btn {
+                    background-color: rgba(0, 0, 0, 0.08);
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    &__action-btn {
+        border: 0;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        width: 34px;
+        height: 34px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: inherit;
+        transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.08);
+            color: #000;
+        }
+    }
+
+    &:hover {
+        .post-card__image {
+            transform: scale(1.04);
+        }
+
+        .post-card__title,
+        .post-card__date {
+            color: #000;
+        }
+
+        .post-card__controls {
+            color: #000;
+        }
+
+        .post-card__controls i,
+        .post-card__controls .views-count,
+        .post-card__controls .likes-count,
+        .post-card__controls .saves-count {
+            color: #000;
+        }
+
+        .post-card__tags .post-card__tag {
+            background-color: #eaeaea;
+            color: #000;
+            border-color: #d5d5d5;
+        }
+    }
+}

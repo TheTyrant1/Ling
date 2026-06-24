@@ -22,6 +22,6 @@ class AccountUpdated extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->subject('Confirm your account update')
-            ->markdown('personal::blade.mails.account-updated');
+            ->view('personal::blade.mails.account-updated');
     }
 }

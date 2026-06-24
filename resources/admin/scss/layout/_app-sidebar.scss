@@ -387,7 +387,9 @@
         height: 100%;
         cursor: pointer;
         visibility: visible;
-        background-color: rgba(0, 0, 0, .2);
+        background-color: rgba(0, 0, 0, 0.24);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
         animation: fadeIn 0.3s both;
     }
 }

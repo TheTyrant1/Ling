@@ -1,7 +1,7 @@
 <aside class="app-sidebar bg-body-secondary shadow d-flex flex-column" data-bs-theme="dark" style="min-height: 100vh;">
     <div class="sidebar-brand">
-        <a class="navbar-brand" href="{{ route('personal.profile.edit') }}">
-            <img src="{{ asset('assets/personal/images/logo/logo.svg') }}" alt="Ling">
+        <a href="{{ route('personal.profile.edit') }}">
+            <img class="logo" src="{{ asset('assets/personal/images/logo/logo.svg') }}" alt="Ling">
         </a>
     </div>
 

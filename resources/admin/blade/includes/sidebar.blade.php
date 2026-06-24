@@ -1,7 +1,7 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
     <div class="sidebar-brand">
         <a href="{{ route('admin.home.index') }}">
-            <img src="{{ asset('assets/admin/images/logo/logo.svg') }}" alt="Ling">
+            <img class="logo" src="{{ asset('assets/admin/images/logo/logo.svg') }}" alt="Ling">
         </a>
     </div>
     <div class="sidebar-wrapper">

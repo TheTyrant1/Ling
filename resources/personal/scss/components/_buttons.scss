@@ -1,5 +1,34 @@
 .burger-btn {
-    padding: 0;
-    color: #C2C7D0;
-    margin: 0 0 0 1rem;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    color: #C2C7D0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-left: 0 !important;
+    cursor: pointer;
+    font-size: 0 !important; // Kills ghost descender line under FA icon
+    text-decoration: none !important;
+    overflow: hidden !important;
+    transition: color 0.2s ease !important;
+
+    i {
+        font-size: 16px !important;
+        line-height: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 16px !important;
+        height: 16px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+    }
+
+    &:hover {
+        color: var(--bs-body-color) !important;
+    }
 }

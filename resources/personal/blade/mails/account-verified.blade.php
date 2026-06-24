@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Verify email address</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <style type="text/css">
+    @font-face {
+        font-family: "Roboto";
+        src: url("{{ asset('resources/web/fonts/roboto/Roboto-VariableFont_wdth,wght.woff2') }}") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: "Inter";
+        src: url("{{ asset('resources/web/fonts/inter/Inter-VariableFont_opsz,wght.woff2') }}") format("woff2");
+        font-weight: 100 900;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100% !important;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        background-color: #f4f4f5;
+        font-family: "Roboto", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    table, td { border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+
+    img { border: 0; height: auto; outline: none; text-decoration: none; display: block; }
+
+    h1, p { margin: 0; padding: 0; }
+
+    /* ─── Dark mode ─── */
+    @media (prefers-color-scheme: dark) {
+        body   { background-color: #09090b !important; }
+        .bg    { background-color: #09090b !important; }
+        .card  { background-color: #18181b !important; }
+        .title { color: #ffffff !important; }
+        .body  { color: #d4d4d8 !important; }
+        .body-muted { color: #71717a !important; }
+        .btn   { background-color: #ffffff !important; color: #09090b !important; }
+        .divider-line { border-top-color: #27272a !important; }
+        .footer { color: #52525b !important; }
+        .footer-strong { color: #a1a1aa !important; }
+        .link  { color: #60a5fa !important; }
+    }
+
+    @media only screen and (max-width: 620px) {
+        .card-td  { padding: 24px 20px !important; }
+        .outer-td { padding: 32px 16px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Outer wrapper -->
+  <table class="bg" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
+         style="background-color:#f4f4f5;">
+    <tr>
+      <td class="outer-td" align="center"
+          style="padding: 48px 24px;">
+
+        <!-- Content column: max 600px -->
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
+               style="max-width:600px; width:100%;">
+
+          <!-- ── Logo ── -->
+          <tr>
+            <td align="center" style="padding-bottom: 28px;">
+              <img src="{{ asset('assets/personal/images/mail/logo.svg') }}"
+                   alt="Ling" width="56"
+                   style="width:56px; height:auto; display:inline-block;" />
+            </td>
+          </tr>
+
+          <!-- ── Card ── -->
+          <tr>
+            <td style="padding:0;">
+              <div class="card"
+                   style="background-color:#ffffff;
+                          border-radius:16px;
+                          overflow:hidden;">
+
+                <div class="card-td"
+                     style="padding: 40px 40px 36px 40px;">
+
+                    <!-- Title -->
+                    <h1 class="title"
+                        style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                               font-size:22px; font-weight:700; line-height:1.3;
+                               color:#09090b; text-align:center;
+                               margin:0 0 28px 0; padding:0;">
+                      Verify email address
+                    </h1>
+
+                    <!-- Greeting -->
+                    <p class="body"
+                       style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                              font-size:15px; line-height:1.65; color:#3f3f46;
+                              margin:0 0 16px 0; padding:0;">
+                      Hello {{ $user->name }},
+                    </p>
+
+                    <!-- Body text -->
+                    <p class="body"
+                       style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                              font-size:15px; line-height:1.65; color:#3f3f46;
+                              margin:0 0 32px 0; padding:0;">
+                      Please click the button below to verify your email address.
+                    </p>
+
+                    <!-- Button -->
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                      <tr>
+                        <td align="center" style="padding-bottom: 32px;">
+                          <a href="{{ $verificationUrl }}" class="btn" target="_blank"
+                             style="display:inline-block;
+                                    background-color:#09090b;
+                                    color:#ffffff;
+                                    font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                                    font-size:14px; font-weight:700; line-height:1.2;
+                                    text-decoration:none;
+                                    padding:13px 36px;
+                                    border-radius:100px;">
+                            Verify
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Sub text -->
+                    <p class="body"
+                       style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                              font-size:14px; line-height:1.65; color:#71717a;
+                              margin:0 0 28px 0; padding:0;">
+                      If you did not create an account, no further action is required.
+                    </p>
+
+                    <!-- Divider -->
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                      <tr>
+                        <td class="divider-line"
+                            style="border-top:1px solid #e4e4e7; font-size:0; line-height:0;
+                                   padding-bottom:24px;">&nbsp;</td>
+                      </tr>
+                    </table>
+
+                    <!-- Footer -->
+                    <p class="footer"
+                       style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                              font-size:13px; line-height:1.5; color:#a1a1aa;
+                              text-align:left; margin:0; padding:0;">
+                      Best regards,<br />
+                      <strong class="footer-strong" style="color:#71717a; font-weight:600;">Ling</strong>
+                    </p>
+
+                </div>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

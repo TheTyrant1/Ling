@@ -1,18 +1,45 @@
 <p align="center">
-    <img src="public/assets/web/images/logo/logo.svg" width="120" alt="Ling"/>
+    <img src="public/assets/readme/images/logo/logo.svg" width="100" alt="Ling"/>
 </p>
 
-## Ling
+<p align="center">
+    <img src="https://img.shields.io/badge/Laravel-13.15.0-red" alt="Laravel">
+    <img src="https://img.shields.io/github/v/release/TheTyrant1/Ling" alt="Laravel">
+    <img src="https://img.shields.io/badge/License-Apache%202.0-purple" alt="License">
+</p>
 
-Ling is an open-source social media platform with universal ready-production backend and frontend.
+<p align="center">
+    Modern open-source social platform built with Laravel.
+</p>
 
- 
+## Features
+
+### Authentication
+- User authentication and authorization
+- Email verification
+
+### Social system
+- Posts and comments
+- Following system
+- User profiles
+
+### Activity
+- User history
+- Notifications
+- Appeals system
+
+### Panels
+- User dashboard
+- Admin dashboard
+
 ## Stack
+
+### Backend
 - [PHP](https://www.php.net/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [Laravel](https://laravel.com/)
 
-
+### Frontend
 - HTML [(Blade)](https://laravel.com/docs/13.x/blade)
 - CSS [(SCSS)](https://sass-lang.com/)
 - JS

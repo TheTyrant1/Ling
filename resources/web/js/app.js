@@ -8,6 +8,9 @@ import { showAuthModal } from './components/modal';
 import { initSelects } from './components/select';
 import { initUserProfileDropdown } from './components/user-profile-dropdown.js';
 import { initSearches } from './components/search.js';
+import { initCookieConsent } from './components/cookies.js';
+import { initComments } from './components/comments.js';
+import { initPostShowTags } from './components/post-show-tags.js';
 
 //DOM
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,4 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSelects();
     initUserProfileDropdown();
     initSearches();
+    initCookieConsent();
+    initComments();
+    initPostShowTags();
 });

@@ -1,5 +1,10 @@
+//Node_modules plugins
+
 @use '@fortawesome/fontawesome-free/css/all.min.css';
 
+
+//Components
+@use "components/logo";
+
 //Base
-@use "base/base";
 @use "base/fonts";

@@ -16,7 +16,7 @@
 
         <div>
             <div class="group relative mt-1 block w-full">
-                <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3 text-gray-400 group-focus-within:text-[#2E937A] transition-colors duration-150">
+                <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3 text-gray-400 group-focus-within:text-[#5FAD65]">
                     <i class="fa-solid fa-envelope"></i>
                 </div>
 
@@ -25,9 +25,14 @@
                        name="email"
                        value="{{ old('email') }}"
                        placeholder="Your email address"
-                       class="block w-full rounded-md shadow-sm text-gray-900 border-gray-300 ps-10
-                              focus:border-gray-300 focus:ring focus:ring-[#2E937A] focus:ring-opacity-40
-                              placeholder:text-gray-400 focus:placeholder:text-[#2E937A] transition-colors duration-150"
+                       class="block w-full rounded-md shadow-sm text-gray-400 border-gray-300 ps-10
+                              focus:border-transparent
+                              focus:ring
+                              focus:ring-[#5FAD65]
+                              focus:ring-opacity-50
+                              group-focus-within:text-[#5FAD65]
+                              placeholder:text-gray-400
+                              focus:placeholder:text-[#5FAD65]"
                        required
                        autofocus>
             </div>
@@ -40,10 +45,11 @@
         <div class="flex items-center justify-end mt-4">
             <button type="submit"
                     class="ms-3 inline-flex items-center px-4 py-2
-                        bg-[#2E937A] hover:bg-[#1C594A] active:bg-[#11362D]
+                        bg-[#5FAD65]
+                        hover:bg-[#4A9350]
                         border border-transparent rounded-md
                         font-semibold text-xs text-white tracking-widest
-                        focus:outline-none focus:ring-2 focus:ring-[#1C594A] focus:ring-offset-2
+                        focus:outline-none focus:ring-2 focus:ring-[#4A9350] focus:ring-offset-2
                         transition ease-in-out duration-150">
                 Email Password Reset Link
             </button>

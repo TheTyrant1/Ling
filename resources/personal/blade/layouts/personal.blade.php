@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>Ling</title>
 
+    <link rel="icon" id="app-favicon" href="{{ asset('assets/personal/images/favicon/favicon-light.svg') }}" type="image/svg+xml">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="color-scheme" content="light dark"/>
     <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)"/>
@@ -12,8 +14,18 @@
     <script>
         const storedTheme = localStorage.getItem('theme');
 
+        const faviconLight = "{{ asset('assets/personal/images/favicon/favicon-light.svg') }}";
+        const faviconDark = "{{ asset('assets/personal/images/favicon/favicon-dark.svg') }}";
+
         if (storedTheme) {
             document.documentElement.setAttribute('data-bs-theme', storedTheme);
+
+            window.addEventListener('DOMContentLoaded', () => {
+                const favicon = document.getElementById('app-favicon');
+                if (favicon) {
+                    favicon.href = storedTheme === 'dark' ? faviconDark : faviconLight;
+                }
+            });
         }
     </script>
 
@@ -39,15 +51,15 @@
 
             @include('personal::blade.includes.search',
                     [
-                        'class' => 'us-nav-centered',
+                        'class' => 'search--nav-centered',
                         'endpoint' => route('personal.search.index'),
-                        'placeholder' => 'Search posts, users...'
+                        'placeholder' => 'Search posts, likes...'
                     ])
 
             <ul class="navbar-nav d-flex justify-content-end align-items-center gap-2">
                 <li class="nav-item dropdown">
                     <button
-                        class="btn btn-link nav-link dropdown-toggle"
+                        class="btn btn-link nav-link dropdown-toggle app-header__btn app-header__btn--theme"
                         id="bd-theme"
                         type="button"
                         data-bs-toggle="dropdown"
@@ -103,13 +115,13 @@
 
                     </ul>
                 </li>
-                <li class="nav-item dropdown me-2">
-                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userMenuButton"
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center app-header__avatar-link" href="#" id="userMenuButton"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img
                             src="{{ asset('storage/' . auth()->user()->profile_image) }}"
                             alt="User image"
-                            class="rounded-circle border app-header-user-profile-image">
+                            class="app-header__avatar-img">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton">
                         <li><a class="dropdown-item" href="{{ route('post.index') }}">Back to Ling</a></li>
@@ -135,9 +147,6 @@
 
     @yield('content')
 
-    <footer class="app-footer">
-        <strong>Ling</strong>
-    </footer>
 </div>
 </body>
 </html>
