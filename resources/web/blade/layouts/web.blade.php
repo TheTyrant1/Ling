@@ -16,84 +16,56 @@
 </div>
 
 <header class="header">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="header__container">
+        <div class="header__inner">
+            <div class="header__card-container">
+                <a href="{{ route('post.index') }}">
+                    <img src="{{ asset('assets/web/images/logo/logo.svg') }}" alt="Ling">
+                </a>
 
-            <a href="{{ route('post.index') }}">
-                <img src="{{ asset('assets/web/images/logo/logo.svg') }}" alt="Ling">
-            </a>
+                @include('web::blade.includes.search')
 
-            @include('web::blade.includes.search', [
-                'class' => 'us-nav-centered',
-                'style' => 'max-width: 500px;',
-                'endpoint' => route('search.index'),
-                'placeholder' => 'Search posts, users...'
-            ])
+                @auth()
+                    <div class="user-profile">
+                        <button class="user-profile__avatar-btn" id="avatarBtn">
+                            <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="User image"
+                                 class="user-profile__avatar">
+                        </button>
+                    </div>
+                @endauth
 
-            <div class="collapse navbar-collapse justify-content-end">
-
-                <ul class="navbar-nav align-items-center">
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
-                    @endguest
-
-                    @auth
-                        <li class="nav-item">
-                            <div class="profile-select">
-                                <button type="button"
-                                        class="profile-select__trigger"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                        aria-label="User menu">
-
-                                    <img src="{{ asset('storage/' . auth()->user()->profile_image) }}"
-                                         alt="User image"
-                                         class="profile-select__avatar">
-                                </button>
-
-                                <ul class="profile-select__menu">
-                                    <li class="profile-select__item">
-                                        <a href="{{ route('user.show', auth()->user()->id) }}"
-                                           class="profile-select__link">Profile</a>
-                                    </li>
-
-                                    <li class="profile-select__item">
-                                        <a href="{{ route('personal.profile.edit') }}"
-                                           class="profile-select__link">Personal</a>
-                                    </li>
-
-                                    @if(auth()->user()->role_id == 1)
-                                        <li class="profile-select__item">
-                                            <a href="{{ route('admin.home.index') }}"
-                                               class="profile-select__link">Admin</a>
-                                        </li>
-                                    @endif
-
-                                    <li class="profile-select__divider" role="separator"></li>
-
-                                    <li class="profile-select__item">
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-                                            <button type="submit"
-                                                    class="profile-select__link profile-select__link--danger">
-                                                Logout
-                                            </button>
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                    @endauth
-                </ul>
-
+                @guest()
+                    <div class="header__authentication-text-container">
+                        <a href="{{ route('login') }}" class="header__login-btn">Login</a>
+                        <a href="{{ route('register') }}" class="header__register-btn">Register</a>
+                    </div>
+                @endguest
             </div>
-        </nav>
+
+            @auth()
+                <div class="user-profile__dropdown" id="dropdownMenu">
+                    <ul class="user-profile__menu">
+                        <li class="user-profile__item">
+                            <a href="{{ route('user.show', auth()->id()) }}" class="user-profile__link">My profile</a>
+                        </li>
+                        <li class="user-profile__item">
+                            <a href="{{ route('personal.profile.edit') }}" class="user-profile__link">Personal</a>
+                        </li>
+                        <li class="user-profile__item">
+                            <a href="{{ route('admin.home.index') }}" class="user-profile__link">Admin</a>
+                        </li>
+                        <li class="user-profile__item">
+                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="submit" class="user-profile__link user-profile__link--logout">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @endauth
+        </div>
     </div>
 </header>
 
