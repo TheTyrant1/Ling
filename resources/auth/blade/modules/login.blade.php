@@ -40,17 +40,18 @@
             @enderror
         </div>
 
-        <div class="group relative mt-4 block w-full">
+        <div class="mt-4">
+            <div class="group relative block w-full">
 
-            <div class="pointer-events-none absolute inset-y-0 flex items-center ps-3 text-gray-400 group-focus-within:text-[#5FAD65]">
-                <i class="fa-solid fa-lock"></i>
-            </div>
+                <div class="pointer-events-none absolute inset-y-0 flex items-center ps-3 text-gray-400 group-focus-within:text-[#5FAD65]">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
 
-            <input id="password"
-                   type="password"
-                   name="password"
-                   placeholder="Your password"
-                   class="block w-full rounded-md shadow-sm text-gray-400 border-gray-300 ps-10
+                <input id="password"
+                       type="password"
+                       name="password"
+                       placeholder="Your password"
+                       class="block w-full rounded-md shadow-sm text-gray-400 border-gray-300 ps-10
                             focus:border-transparent
                               focus:ring
                             focus:ring-[#5FAD65]
@@ -58,24 +59,25 @@
                             group-focus-within:text-[#5FAD65]
                             placeholder:text-gray-400
                             focus:placeholder:text-[#5FAD65]"
-                   required
-                   autocomplete="current-password">
+                       required
+                       autocomplete="current-password">
 
-            <button type="button"
-                    onmousedown="event.preventDefault()"
-                    onclick="const input = document.getElementById('password');
-                             const icon = this.querySelector('i');
-                             if (input.type === 'password') {
-                                 input.type = 'text';
-                                 icon.classList.replace('fa-eye', 'fa-eye-slash');
-                             }
-                             else {
-                                 input.type = 'password';
-                                 icon.classList.replace('fa-eye-slash', 'fa-eye');
-                             }"
-                    class="absolute inset-y-0 end-0 flex items-center pe-3 text-gray-400 group-focus-within:text-[#5FAD65] transition-colors duration-150">
-                <i class="fa-solid fa-eye"></i>
-            </button>
+                <button type="button"
+                        onmousedown="event.preventDefault()"
+                        onclick="const input = document.getElementById('password');
+                                 const icon = this.querySelector('i');
+                                 if (input.type === 'password') {
+                                     input.type = 'text';
+                                     icon.classList.replace('fa-eye', 'fa-eye-slash');
+                                 }
+                                 else {
+                                     input.type = 'password';
+                                     icon.classList.replace('fa-eye-slash', 'fa-eye');
+                                 }"
+                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-gray-400 group-focus-within:text-[#5FAD65] transition-colors duration-150">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
 
             @error('password')
             <p class="text-sm text-red-600 mt-2">{{ $message }}</p>

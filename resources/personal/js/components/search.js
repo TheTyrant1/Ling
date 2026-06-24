@@ -355,21 +355,37 @@ function initSearch(root) {
         }
     });
 
-    let lastShift = 0;
-    let shiftCount = 0;
+    let shiftPressCount = 0;
+    let lastShiftPress = 0;
+    let shiftKeyHeld = false;
+    const SHIFT_WINDOW_MS = 400;
+
+    document.addEventListener('keyup', (event) => {
+        if (event.key === 'Shift') {
+            shiftKeyHeld = false;
+        }
+    });
 
     document.addEventListener('keydown', (event) => {
         if (event.key !== 'Shift' || event.ctrlKey || event.altKey || event.metaKey) {
-            shiftCount = 0;
+            if (event.key !== 'Shift') {
+                shiftPressCount = 0;
+            }
             return;
         }
 
-        const now = Date.now();
-        shiftCount = now - lastShift < 400 ? shiftCount + 1 : 1;
-        lastShift = now;
+        if (event.repeat || shiftKeyHeld) {
+            return;
+        }
 
-        if (shiftCount >= 2) {
-            shiftCount = 0;
+        shiftKeyHeld = true;
+
+        const now = Date.now();
+        shiftPressCount = now - lastShiftPress < SHIFT_WINDOW_MS ? shiftPressCount + 1 : 1;
+        lastShiftPress = now;
+
+        if (shiftPressCount >= 2) {
+            shiftPressCount = 0;
             overlay.classList.contains(ACTIVE_OVERLAY_CLASS) ? close() : open();
         }
     });

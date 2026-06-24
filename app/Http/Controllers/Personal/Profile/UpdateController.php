@@ -16,11 +16,17 @@ class UpdateController extends Controller
         $user = auth()->user();
 
         if ($request->hasFile('profile_image')) {
-            if ($user->profile_image) {
+
+            $defaultImage = 'factory/images/profile_images/0f6894e539589a50809e45833c8bb6c4.jpg';
+
+            if ($user->profile_image && $user->profile_image !== $defaultImage) {
                 Storage::disk('public')->delete($user->profile_image);
             }
+
             $user->profile_image = $request->file('profile_image')->store('main/images/profile_images', 'public');
             $user->save();
+            Mail::to($user->email)->send(new AccountUpdated($user));
+
             return back()->with('success', 'Profile photo updated successfully!');
         }
 
