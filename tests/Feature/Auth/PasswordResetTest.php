@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Mail\User\AccountPasswordResetLink;
 use App\Models\User;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class PasswordResetTest extends TestCase
@@ -21,25 +21,29 @@ class PasswordResetTest extends TestCase
 
     public function test_reset_password_link_can_be_requested(): void
     {
-        Notification::fake();
+        Mail::fake();
 
         $user = User::factory()->create();
 
         $this->post('/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, ResetPassword::class);
+        Mail::assertSent(AccountPasswordResetLink::class, function ($mail) use ($user) {
+            return $mail->hasTo($user->email);
+        });
     }
 
     public function test_reset_password_screen_can_be_rendered(): void
     {
-        Notification::fake();
+        Mail::fake();
 
         $user = User::factory()->create();
 
         $this->post('/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
-            $response = $this->get('/reset-password/'.$notification->token);
+        Mail::assertSent(AccountPasswordResetLink::class, function ($mail) use ($user) {
+            $path = parse_url($mail->resetUrl, PHP_URL_PATH);
+            $token = basename($path);
+            $response = $this->get('/reset-password/'.$token.'?email='.urlencode($user->email));
 
             $response->assertStatus(200);
 
@@ -49,15 +53,17 @@ class PasswordResetTest extends TestCase
 
     public function test_password_can_be_reset_with_valid_token(): void
     {
-        Notification::fake();
+        Mail::fake();
 
         $user = User::factory()->create();
 
         $this->post('/forgot-password', ['email' => $user->email]);
 
-        Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
+        Mail::assertSent(AccountPasswordResetLink::class, function ($mail) use ($user) {
+            $path = parse_url($mail->resetUrl, PHP_URL_PATH);
+            $token = basename($path);
             $response = $this->post('/reset-password', [
-                'token' => $notification->token,
+                'token' => $token,
                 'email' => $user->email,
                 'password' => 'password',
                 'password_confirmation' => 'password',

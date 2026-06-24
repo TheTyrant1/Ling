@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Account updated</title>
+  <title>Reset your password</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
@@ -40,14 +40,14 @@
 
     h1, p { margin: 0; padding: 0; }
 
-    /* ─── Dark mode ─── */
     @media (prefers-color-scheme: dark) {
         body   { background-color: #09090b !important; }
         .bg    { background-color: #09090b !important; }
         .card  { background-color: #18181b !important; }
         .title { color: #ffffff !important; }
         .body  { color: #d4d4d8 !important; }
-        .body-strong { color: #ffffff !important; }
+        .body-muted { color: #71717a !important; }
+        .btn   { background-color: #ffffff !important; color: #09090b !important; }
         .divider-line { border-top-color: #27272a !important; }
         .footer { color: #52525b !important; }
         .footer-strong { color: #a1a1aa !important; }
@@ -61,18 +61,15 @@
 </head>
 
 <body>
-  <!-- Outer wrapper -->
   <table class="bg" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
          style="background-color:#f4f4f5;">
     <tr>
       <td class="outer-td" align="center"
           style="padding: 48px 24px;">
 
-        <!-- Content column: max 600px -->
         <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
                style="max-width:600px; width:100%;">
 
-          <!-- ── Logo ── -->
           <tr>
             <td align="center" style="padding-bottom: 28px;">
               <img src="{{ asset('assets/personal/images/mail/logo.svg') }}"
@@ -81,7 +78,6 @@
             </td>
           </tr>
 
-          <!-- ── Card ── -->
           <tr>
             <td style="padding:0;">
               <div class="card"
@@ -92,16 +88,14 @@
                 <div class="card-td"
                      style="padding: 40px 40px 36px 40px;">
 
-                    <!-- Title -->
                     <h1 class="title"
                         style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
                                font-size:22px; font-weight:700; line-height:1.3;
                                color:#09090b; text-align:center;
                                margin:0 0 28px 0; padding:0;">
-                      Account updated
+                      Reset your password
                     </h1>
 
-                    <!-- Greeting -->
                     <p class="body"
                        style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
                               font-size:15px; line-height:1.65; color:#3f3f46;
@@ -109,24 +103,45 @@
                       Hello {{ $user->name }},
                     </p>
 
-                    <!-- Body text 1 -->
-                    <p class="body"
-                       style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                              font-size:15px; line-height:1.65; color:#3f3f46;
-                              margin:0 0 16px 0; padding:0;">
-                      You requested to update your account. If this was you, no action is required.
-                    </p>
-
-                    <!-- Body text 2 -->
                     <p class="body"
                        style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
                               font-size:15px; line-height:1.65; color:#3f3f46;
                               margin:0 0 32px 0; padding:0;">
-                      If you did <strong class="body-strong" style="color:#09090b; font-weight:600;">not</strong>
-                      request this update, please change your password immediately.
+                        You are receiving this email because a password reset request was made for your account.
                     </p>
 
-                    <!-- Divider -->
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                      <tr>
+                        <td align="center" style="padding-bottom: 32px;">
+                          <a href="{{ $resetUrl }}" class="btn" target="_blank"
+                             style="display:inline-block;
+                                    background-color:#09090b;
+                                    color:#ffffff;
+                                    font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                                    font-size:14px; font-weight:700; line-height:1.2;
+                                    text-decoration:none;
+                                    padding:13px 36px;
+                                    border-radius:100px;">
+                            Reset password
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <p class="body"
+                       style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                              font-size:14px; line-height:1.65; color:#71717a;
+                              margin:0 0 16px 0; padding:0;">
+                      This password reset link will expire in {{ $expireMinutes }} minutes.
+                    </p>
+
+                    <p class="body body-muted"
+                       style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                              font-size:14px; line-height:1.65; color:#71717a;
+                              margin:0 0 28px 0; padding:0;">
+                      If you did not request a password reset, no further action is required.
+                    </p>
+
                     <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
                       <tr>
                         <td class="divider-line"
@@ -135,7 +150,6 @@
                       </tr>
                     </table>
 
-                    <!-- Footer -->
                     <p class="footer"
                        style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
                               font-size:13px; line-height:1.5; color:#a1a1aa;

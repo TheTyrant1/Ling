@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Account updated</title>
+  <title>Verify email address</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
@@ -47,10 +47,12 @@
         .card  { background-color: #18181b !important; }
         .title { color: #ffffff !important; }
         .body  { color: #d4d4d8 !important; }
-        .body-strong { color: #ffffff !important; }
+        .body-muted { color: #71717a !important; }
+        .btn   { background-color: #ffffff !important; color: #09090b !important; }
         .divider-line { border-top-color: #27272a !important; }
         .footer { color: #52525b !important; }
         .footer-strong { color: #a1a1aa !important; }
+        .link  { color: #60a5fa !important; }
     }
 
     @media only screen and (max-width: 620px) {
@@ -98,7 +100,7 @@
                                font-size:22px; font-weight:700; line-height:1.3;
                                color:#09090b; text-align:center;
                                margin:0 0 28px 0; padding:0;">
-                      Account updated
+                      Verify email address
                     </h1>
 
                     <!-- Greeting -->
@@ -109,21 +111,39 @@
                       Hello {{ $user->name }},
                     </p>
 
-                    <!-- Body text 1 -->
-                    <p class="body"
-                       style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-                              font-size:15px; line-height:1.65; color:#3f3f46;
-                              margin:0 0 16px 0; padding:0;">
-                      You requested to update your account. If this was you, no action is required.
-                    </p>
-
-                    <!-- Body text 2 -->
+                    <!-- Body text -->
                     <p class="body"
                        style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
                               font-size:15px; line-height:1.65; color:#3f3f46;
                               margin:0 0 32px 0; padding:0;">
-                      If you did <strong class="body-strong" style="color:#09090b; font-weight:600;">not</strong>
-                      request this update, please change your password immediately.
+                      Please click the button below to verify your email address.
+                    </p>
+
+                    <!-- Button -->
+                    <table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation">
+                      <tr>
+                        <td align="center" style="padding-bottom: 32px;">
+                          <a href="{{ $verificationUrl }}" class="btn" target="_blank"
+                             style="display:inline-block;
+                                    background-color:#09090b;
+                                    color:#ffffff;
+                                    font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                                    font-size:14px; font-weight:700; line-height:1.2;
+                                    text-decoration:none;
+                                    padding:13px 36px;
+                                    border-radius:100px;">
+                            Verify
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Sub text -->
+                    <p class="body"
+                       style="font-family:'Roboto','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+                              font-size:14px; line-height:1.65; color:#71717a;
+                              margin:0 0 28px 0; padding:0;">
+                      If you did not create an account, no further action is required.
                     </p>
 
                     <!-- Divider -->
