@@ -35,7 +35,8 @@
                 spellcheck="false"
             >
             <button type="button" class="search__close" id="{{ $uid }}_close" aria-label="Close search">
-                <kbd>Esc</kbd>
+                <kbd class="search__close-kbd">Esc</kbd>
+                <i class="fa-solid fa-xmark search__close-icon"></i>
             </button>
         </div>
 
@@ -63,9 +64,13 @@
 
         <div class="search__footer">
             <div class="search__hints">
-                <span><kbd>Up/Down</kbd> Navigate</span>
-                <span><kbd>Enter</kbd> Select</span>
-                <span><kbd>Esc</kbd> Close</span>
+                <span class="search__hint-item search__hint-item--navigate"><kbd><i class="fa-solid fa-arrows-up-down"></i></kbd> Navigate</span>
+                <span class="search__hint-item search__hint-item--select"><kbd><i class="fa-solid fa-arrow-turn-down"></i></kbd> Select</span>
+                <span class="search__hint-item search__hint-item--close">
+                    <kbd class="search__kbd--desktop">Esc</kbd>
+                    <kbd class="search__kbd--mobile"><i class="fa-solid fa-arrow-left"></i></kbd>
+                    Close
+                </span>
             </div>
         </div>
     </div>

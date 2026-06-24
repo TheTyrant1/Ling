@@ -27,11 +27,24 @@ class IndexController extends Controller
             ]);
         }
 
+        $isNumeric = is_numeric($query);
+
         $posts = Post::withTrashed()
-            ->where('title', 'like', "%{$query}%")
-            ->orWhere('id', $query)
-            ->orWhereHas('user', function ($q) use ($query) {
-                $q->where('name', 'like', "%{$query}%")->orWhere('id', $query);
+            ->with('user')
+            ->where(function ($q) use ($query, $isNumeric) {
+                $q->where('title', 'ilike', "%{$query}%");
+
+                if ($isNumeric) {
+                    $q->orWhere('id', $query);
+                }
+
+                $q->orWhereHas('user', function ($subQ) use ($query, $isNumeric) {
+                    $subQ->where('name', 'ilike', "%{$query}%");
+
+                    if ($isNumeric) {
+                        $subQ->orWhere('id', $query);
+                    }
+                });
             })
             ->limit(5)
             ->get()
@@ -46,8 +59,12 @@ class IndexController extends Controller
             ]);
 
         $tags = Tag::withTrashed()
-            ->where('title', 'like', "%{$query}%")
-            ->orWhere('id', 'like', "%{$query}%")
+            ->where(function ($q) use ($query, $isNumeric) {
+                $q->where('title', 'ilike', "%{$query}%");
+                if ($isNumeric) {
+                    $q->orWhere('id', $query);
+                }
+            })
             ->limit(5)
             ->get()
             ->map(fn($tag) => [
@@ -59,8 +76,12 @@ class IndexController extends Controller
             ]);
 
         $users = User::withTrashed()
-            ->where('name', 'like', "%{$query}%")
-            ->orWhere('id', 'like', "%{$query}%")
+            ->where(function ($q) use ($query, $isNumeric) {
+                $q->where('name', 'ilike', "%{$query}%");
+                if ($isNumeric) {
+                    $q->orWhere('id', $query);
+                }
+            })
             ->limit(5)
             ->get()
             ->map(fn($user) => [
@@ -73,10 +94,20 @@ class IndexController extends Controller
             ]);
 
         $comments = Comment::withTrashed()
-            ->where('message', 'like', "%{$query}%")
-            ->orWhere('id', 'like', "%$query%")
-            ->orWhereHas('user', function ($q) use ($query) {
-                $q->where('name', 'like', "%{$query}%")->orWhere('id', 'like', "%{$query}%");
+            ->with('user')
+            ->where(function ($q) use ($query, $isNumeric) {
+                $q->where('message', 'ilike', "%{$query}%");
+
+                if ($isNumeric) {
+                    $q->orWhere('id', $query);
+                }
+
+                $q->orWhereHas('user', function ($subQ) use ($query, $isNumeric) {
+                    $subQ->where('name', 'ilike', "%{$query}%");
+                    if ($isNumeric) {
+                        $subQ->orWhere('id', $query);
+                    }
+                });
             })
             ->limit(5)
             ->get()
@@ -89,8 +120,12 @@ class IndexController extends Controller
                 'badge' => 'ID: ' . $comment->id
             ]);
 
-        $appeals = Appeal::where('user_message', 'like', "%{$query}%")
-            ->orWhere('id', 'like', "%$query%")
+        $appeals = Appeal::where(function ($q) use ($query, $isNumeric) {
+            $q->where('user_message', 'ilike', "%{$query}%");
+            if ($isNumeric) {
+                $q->orWhere('id', $query);
+            }
+        })
             ->limit(5)
             ->get()
             ->map(fn($appeal) => [
