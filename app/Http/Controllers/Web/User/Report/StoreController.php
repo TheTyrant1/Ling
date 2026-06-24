@@ -36,7 +36,7 @@ class StoreController
             ]);
         }
 
-        if ($user->reportsReceived()->count() >= 1) {
+        if ($user->reportsReceived()->count() >= 15) {
             $user->ban();
 
             Notification::create([

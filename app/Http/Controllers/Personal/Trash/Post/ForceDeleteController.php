@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Personal\Trash\Post;
 
-use App\Http\Controllers\Personal\Trash\Post\BaseController;
 use App\Models\Post;
 
 class ForceDeleteController extends BaseController

@@ -18,11 +18,11 @@
             <div>
                 <button type="submit"
                         class="inline-flex items-center px-4 py-2
-                            bg-[#2E937A]
-                            hover:bg-[#1C594A]
+                            bg-[#5FAD65]
+                            hover:bg-[#4A9350]
                             border border-transparent rounded-md
                             font-semibold text-xs text-white uppercase tracking-widest
-                            focus:outline-none focus:ring-2 focus:ring-[#1C594A] focus:ring-offset-2
+                            focus:outline-none focus:ring-2 focus:ring-[#4A9350] focus:ring-offset-2
                             transition ease-in-out duration-150">
                     {{ __('Resend Verification Email') }}
                 </button>
@@ -33,7 +33,7 @@
             @csrf
 
             <button type="submit"
-                    class="text-sm text-gray-400 hover:text-[#2E937A] rounded-md focus:outline-none transition ease-in-out duration-150">
+                    class="text-sm text-gray-400 hover:text-[#5FAD65] rounded-md focus:outline-none transition ease-in-out duration-150">
                 {{ __('Log Out') }}
             </button>
         </form>

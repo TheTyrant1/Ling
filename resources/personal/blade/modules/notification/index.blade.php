@@ -14,9 +14,9 @@
 
         <div class="app-content">
             <div class="container-fluid">
-                <div class="row mb-4">
-                    <div class="col-12 col-md-4 col-lg-2">
-                        @if(auth()->user()->notifications()->exists())
+                @if(auth()->user()->notifications()->exists())
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-4 col-lg-2">
                             <form method="GET" action="{{ route('personal.notification.index') }}">
                                 <select name="type" class="form-select" onchange="this.form.submit()">
                                     <option value="">All</option>
@@ -33,9 +33,9 @@
                                     </option>
                                 </select>
                             </form>
-                        @endif
+                        </div>
                     </div>
-                </div>
+                @endif
                 <div class="row">
                     <div class="col-12 col-md-10 col-lg-10">
                         @if($notifications->count())
@@ -203,13 +203,13 @@
                                     </table>
                                 </div>
                             </div>
-                            @if($notifications->hasPages())
-                                <div class="overflow-x-auto d-flex justify-content-start mb-2">
-                                    {{ $notifications->links('personal::blade.pagination.bootstrap-4') }}
-                                </div>
-                            @endif
                         @else
                             <p class="text-muted mb-4">You have no notifications.</p>
+                        @endif
+                        @if($notifications->hasPages())
+                            <div class="overflow-x-auto d-flex justify-content-start mb-2">
+                                {{ $notifications->links('personal::blade.pagination.bootstrap-4') }}
+                            </div>
                         @endif
                     </div>
                 </div>

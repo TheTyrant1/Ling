@@ -22,25 +22,50 @@
     flex: 1;
     display: flex;
     align-items: center;
-    padding: 1px 16px;
+    gap: 10px;
+    box-sizing: border-box;
+    height: 54px;
+    min-height: 54px;
+    padding: 0 16px;
 
-    background: rgba(120, 120, 120, 50%);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-radius: 100px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+
+    @media (min-width: 900.02px) {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        gap: 16px;
+    }
+}
+
+.header__logo-wrapper {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    @media (min-width: 900.02px) {
+        justify-self: start;
+    }
 }
 
 .user-profile {
     display: flex;
     align-items: center;
-    margin-left: auto;
+    flex-shrink: 0;
+
+    @media (min-width: 900.02px) {
+        justify-self: end;
+    }
 }
 
 .user-profile__avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .user-profile__avatar-btn {
@@ -48,6 +73,13 @@
     border: none;
     padding: 0;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 .user-profile__dropdown {
@@ -56,10 +88,12 @@
     right: 16px;
     width: 200px;
 
-    background: rgba(120, 120, 120, 50%);
+    background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     display: none;
     z-index: 200;
 }
@@ -80,16 +114,16 @@
 
 .user-profile__link {
     display: block;
-    padding: 10px 20px;
-    color: #000000;
+    padding: 8px 16px;
+    color: #0d0d0d;
     text-decoration: none;
     font-family: "Roboto", "sans-serif";
-    font-size: 15px;
-    transition: background 0.2s, border-radius 0.2s;
+    font-size: 14px;
+    transition: background 0.2s, border-radius 0.2s, color 0.2s;
 }
 
 .user-profile__link:hover {
-    background: rgba(0, 0, 0, 20%);
+    background: rgba(0, 0, 0, 0.05);
     border-radius: 100px;
 }
 
@@ -108,58 +142,68 @@
     border-radius: 100px;
 }
 
+.user-profile__logout-form {
+    display: inline;
+}
+
 
 .header__authentication-text-container{
     display: flex;
     justify-content: end;
     gap: 10px;
-    margin-left: auto;
+    flex-shrink: 0;
+
+    @media (min-width: 900.02px) {
+        justify-self: end;
+    }
 }
 
 .header__register-btn {
     display: inline-block;
     font-family: "Roboto", "sans-serif";
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: 600;
     color: #ffffff;
     text-decoration: none;
-    background: rgba(0, 0, 0, 0.28);
+    background: #0d0d0d;
     border-radius: 100px;
-    padding: 5px 12px;
-    transition: background 0.2s ease, color 0.2s ease;
+    padding: 6px 16px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s;
 
     &:hover {
-        background: rgba(0, 0, 0, 0.4);
+        background: #252525;
         color: #ffffff;
+    }
+
+    &:active {
+        transform: scale(0.97);
     }
 }
 
 .header__login-btn {
     display: inline-block;
     font-family: "Roboto", "sans-serif";
-    font-size: 15px;
-    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0d0d0d;
     text-decoration: none;
-    background: rgba(0, 0, 0, 0.28);
+    background: rgba(0, 0, 0, 0.05);
     border-radius: 100px;
-    padding: 5px 12px;
-    transition: background 0.2s ease, color 0.2s ease;
+    padding: 6px 16px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s;
 
     &:hover {
-        background: rgba(0, 0, 0, 0.4);
-        color: #ffffff;
+        background: rgba(0, 0, 0, 0.1);
+        color: #0d0d0d;
+    }
+
+    &:active {
+        transform: scale(0.97);
     }
 }
 
 @media (max-width: 575.98px) {
     .header__card-container {
         gap: 8px;
-    }
-
-    .user-profile {
-        margin-left: 0;
-    }
-
-    .header__authentication-text-container {
-        margin-left: 0;
     }
 }

@@ -17,6 +17,7 @@ import Layout from './components/layout';
 import PushMenu from './components/push-menu';
 import ProfileImageUpdate from './components/profile-image-update';
 import ThemeSwitcher from './components/theme-switcher.js';
+import { initSearches } from './components/search.js';
 
 
 // Executes initialization logic once the DOM is fully loaded.
@@ -51,11 +52,12 @@ onDOMContentLoaded(() => {
         }
     }
 
-    const lenis = new Lenis({
+    window.lenis = new Lenis({
         autoRaf: true,
     });
 
     // Initializations JS Components
+    initSearches();
 
     // Profile image preview logic
     new ProfileImageUpdate('avatarInput', 'avatarPreview');

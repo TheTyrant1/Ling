@@ -6,75 +6,73 @@
 @endphp
 
 @section('content')
-    <main class="blog-container">
+    <main class="tag-page">
 
-        <div class="tag-page-text-container" data-aos="fade-up">
-            <h1 class="tag-page-title">#{{ $tag->title }}</h1>
+        <div class="tag-page__header" data-aos="fade-up">
+            <h1 class="tag-page__title">#{{ $tag->title }}</h1>
 
             @if($posts->count() > 1)
-                <p class="tag-page-subtitle">
+                <p class="tag-page__subtitle">
                     Posts: {{ $tag->posts->count() }}
                 </p>
             @endif
         </div>
 
-        {{-- Блок сортування --}}
+        {{-- Sorting Block --}}
         @if($posts->count() > 1)
-            <div class="blog-filter-bar" data-aos="fade-up">
-                <form method="GET" action="{{ route('post.index') }}">
-                    <select name="sort" class="sort-select" onchange="this.form.submit()">
-                        <option value="latest" {{ (request('sort') == 'latest') ? 'selected' : '' }}>Latest</option>
-                        <option value="popular" {{ (request('sort') == 'popular') ? 'selected' : '' }}>Popular</option>
-                    </select>
-                </form>
+            <div class="tag-page__filter-bar" data-aos="fade-up">
+                @include('web::blade.includes.sort-select', [
+                    'action' => route('tag.index', $tag->id),
+                    'selected' => request('sort', 'latest'),
+                ])
             </div>
         @endif
 
-        {{-- Сітка постів --}}
+        {{-- Posts Grid --}}
         @if($posts->count())
-            <section class="blog-grid">
+            <section class="posts-grid">
                 @foreach($posts as $post)
-                    <article class="blog-post" data-aos="fade-up">
+                    <article class="post-card" data-aos="fade-up">
 
-                        {{-- Обгортка зображення та автора --}}
-                        <div class="post-media">
-                            <a href="{{ route('user.show', $post->user->id) }}" class="author-badge">
+                        {{-- Image and Author --}}
+                        <div class="post-card__media">
+                            <a href="{{ route('user.show', $post->user->id) }}" class="post-card__author">
                                 <img src="{{ asset('storage/' . $post->user->profile_image) }}" alt="User image">
                                 <span title="{{ $post->user->name }}">{{ Str::limit($post->user->name, 10) }}</span>
                             </a>
-                            <a href="{{ route('post.show', $post->id) }}">
-                                <img src="{{ asset('storage/' . $post->preview_image) }}" alt="{{ $post->title }}" class="post-preview-img">
+                            <a href="{{ route('post.show', $post->id) }}" class="post-card__image-link">
+                                <img src="{{ asset('storage/' . $post->preview_image) }}" alt="{{ $post->title }}" class="post-card__image">
                             </a>
                         </div>
 
-                        {{-- Мета-дані (Теги та Дата) --}}
-                        <div class="post-meta">
+                        {{-- Metadata --}}
+                        <div class="post-card__meta">
                             @if($post->tags->count())
-                                <div class="post-tags">
-                                    @foreach($post->tags->take(2) as $tag)
-                                        <a href="{{ route('tag.index', $tag->id) }}" class="tag-item">#{{ Str::limit($tag->title, 10) }}</a>
+                                <div class="post-card__tags">
+                                    @foreach($post->tags->take(2) as $t)
+                                        <a href="{{ route('tag.index', $t->id) }}" class="post-card__tag">#{{ Str::limit($t->title, 10) }}</a>
                                     @endforeach
 
                                     @if($post->tags->count() > 2)
-                                        <span class="tag-item count">+{{ $post->tags->count() - 2 }}</span>
+                                        <span class="post-card__tag count">+{{ $post->tags->count() - 2 }}</span>
                                     @endif
                                 </div>
                             @endif
 
-                            <time class="post-date">
+                            <time class="post-card__date">
                                 {{ $post->created_at->diffForHumans() }}
                             </time>
                         </div>
 
-                        <a href="{{ route('post.show', $post->id) }}" class="post-title-link">
-                            <h2 class="blog-post-title">
+                        <a href="{{ route('post.show', $post->id) }}" class="post-card__title-link">
+                            <h2 class="post-card__title">
                                 {{ Str::limit($post->title, 45) }}
                             </h2>
                         </a>
 
-                        {{-- Інтерактивні елементи --}}
-                        <div class="interactive-controls">
-                            <div class="stat-item">
+                        {{-- Interactive controls --}}
+                        <div class="post-card__controls">
+                            <div class="post-card__stat">
                                 <i class="fa-solid fa-eye"></i>
                                 <span class="views-count">{{ Number::abbreviate($post->views_count) }}</span>
                             </div>
@@ -88,7 +86,7 @@
 
                                 <form action="{{ route('post.like.store', $post->id) }}" method="post">
                                     @csrf
-                                    <button type="submit" class="interactive-btn">
+                                    <button type="submit" class="post-card__action-btn">
                                         <i class="{{ $isLiked ? 'fa-solid' : 'fa-regular' }} fa-heart"></i>
                                     </button>
                                     <span class="likes-count">{{ Number::abbreviate($post->likes_count) }}</span>
@@ -96,7 +94,7 @@
 
                                 <form action="{{ route('post.save.store', $post->id) }}" method="post">
                                     @csrf
-                                    <button type="submit" class="interactive-btn">
+                                    <button type="submit" class="post-card__action-btn">
                                         <i class="{{ $isSaved ? 'fa-solid' : 'fa-regular' }} fa-bookmark"></i>
                                     </button>
                                     <span class="saves-count">{{ Number::abbreviate($post->saves_count) }}</span>
@@ -104,25 +102,29 @@
 
                                 <form action="{{ route('post.report.store', $post->id) }}" method="post">
                                     @csrf
-                                    <button type="submit" class="interactive-btn">
+                                    <button type="submit" class="post-card__action-btn">
                                         <i class="{{ $isReported ? 'fa-solid' : 'fa-regular' }} fa-flag"></i>
                                     </button>
                                 </form>
                             @endauth
 
                             @guest
-                                <div class="stat-item clickable" onclick="showAuthModal();">
-                                    <i class="fa-regular fa-heart"></i>
+                                <div class="post-card__stat post-card__stat--clickable" data-auth-required>
+                                    <button type="button" class="post-card__action-btn">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
                                     <span class="likes-count">{{ Number::abbreviate($post->likes_count) }}</span>
                                 </div>
 
-                                <div class="stat-item clickable" onclick="showAuthModal();">
-                                    <i class="fa-regular fa-bookmark"></i>
+                                <div class="post-card__stat post-card__stat--clickable" data-auth-required>
+                                    <button type="button" class="post-card__action-btn">
+                                        <i class="fa-regular fa-bookmark"></i>
+                                    </button>
                                     <span class="saves-count">{{ Number::abbreviate($post->saves_count) }}</span>
                                 </div>
 
-                                <div class="stat-item clickable" onclick="showAuthModal();">
-                                    <button type="button" class="interactive-btn">
+                                <div class="post-card__stat post-card__stat--clickable" data-auth-required>
+                                    <button type="button" class="post-card__action-btn">
                                         <i class="fa-regular fa-flag"></i>
                                     </button>
                                 </div>
@@ -134,7 +136,7 @@
             </section>
 
             <div class="pagination-wrapper" data-aos="fade-up">
-                {{ $posts->links('web::blade.pagination.bootstrap-4') }}
+                {{ $posts->links('web::blade.pagination.pagination') }}
             </div>
         @else
             <div class="empty-state" data-aos="fade-up">

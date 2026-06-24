@@ -6,10 +6,42 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ling</title>
 
+    <link rel="icon" type="image/svg+xml" href="{{ asset('assets/web/images/favicon/favicon.svg') }}">
+
+    <meta name="description" content="Ling is a social platform to connect, share, and discover content that matters to you.">
+
+
+
+    <meta property="og:site_name" content="Ling">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:url" content="{{ url('/') }}">
+
+    <meta property="og:title" content="Ling - If you want this, ling yourself">
+
+    <meta property="og:description" content="Ling is a social platform to connect, share, and discover content that matters to you.">
+
+    <meta property="og:image" content="{{ asset('assets/web/images/open-graph/ling-banner.png') }}">
+
+    <meta property="og:image:width" content="1200">
+
+    <meta property="og:image:height" content="630">
+
+
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="Ling - If you want this, ling yourself">
+
+    <meta name="twitter:description" content="New social media platform for everyone">
+
+    <meta name="twitter:image" content="{{ asset('assets/web/images/open-graph/ling-banner.png') }}">
+
     @vite(['resources/web/scss/app.scss', 'resources/web/js/app.js'])
 </head>
 
-<body>
+<body data-cookie-consent="{{ auth()->guest() ? 'true' : 'false' }}">
 
 <div class="loader">
     <div class="loader__spinner"></div>
@@ -19,8 +51,8 @@
     <div class="header__container">
         <div class="header__inner">
             <div class="header__card-container">
-                <a href="{{ route('post.index') }}">
-                    <img src="{{ asset('assets/web/images/logo/logo.svg') }}" alt="Ling">
+                <a href="{{ route('post.index') }}" class="header__logo-wrapper">
+                    <img class="logo" src="{{ asset('assets/web/images/logo/logo.svg') }}" alt="Ling">
                 </a>
 
                 @include('web::blade.includes.search')
@@ -34,7 +66,7 @@
                     </div>
                 @endauth
 
-                @guest()
+                @guest
                     <div class="header__authentication-text-container">
                         <a href="{{ route('login') }}" class="header__login-btn">Login</a>
                         <a href="{{ route('register') }}" class="header__register-btn">Register</a>
@@ -51,11 +83,13 @@
                         <li class="user-profile__item">
                             <a href="{{ route('personal.profile.edit') }}" class="user-profile__link">Personal</a>
                         </li>
+                        @if(auth()->user()->role_id === 1)
+                            <li class="user-profile__item">
+                                <a href="{{ route('admin.home.index') }}" class="user-profile__link">Admin</a>
+                            </li>
+                        @endif
                         <li class="user-profile__item">
-                            <a href="{{ route('admin.home.index') }}" class="user-profile__link">Admin</a>
-                        </li>
-                        <li class="user-profile__item">
-                            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                            <form action="{{ route('logout') }}" method="POST" class="user-profile__logout-form">
                                 @csrf
                                 <button type="submit" class="user-profile__link user-profile__link--logout">
                                     Logout
@@ -74,46 +108,55 @@
 <footer class="footer">
     <div class="footer__container">
         <div class="footer__card">
-            <a href="{{ route('post.index') }}">
-                <img src="{{ asset('assets/web/images/logo/logo.svg') }}" alt="Ling">
+            <a href="{{ route('post.index') }}" class="header__logo-wrapper">
+                <img class="logo" src="{{ asset('assets/web/images/logo/logo.svg') }}" alt="Ling">
             </a>
             <p class="footer__text">
-                {{ now()->format('Y') }} // All rights reserved.
+                &copy;
+                @if(now()->format('Y') == 2026)
+                    2026
+                @else
+                    2026-{{ now()->format('Y') }}
+                @endif
+                // All rights reserved.
                 <br>If you want this, ling yourself.
             </p>
         </div>
     </div>
 </footer>
 
-<div class="modal fade" id="authRequiredModal" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content"
-             style="border-radius:15px;border:none;box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+<div class="modal-window" id="authRequiredModal" aria-hidden="true">
+    <div class="modal-window__overlay" data-close-modal></div>
+    <div class="modal-window__container">
+        <div class="modal-window__content">
+            <button class="modal-window__close" data-close-modal aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
-            <div class="modal-body text-center p-5">
+            <div class="modal-window__body">
+                <div class="modal-window__icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
 
-                <i class="fa-solid fa-lock mb-3"
-                   style="font-size:40px;color:#4e4e4e;"></i>
+                <h4 class="modal-window__title">Authentication Required</h4>
 
-                <h4 class="fw-bold mb-2">Authentication Required</h4>
-
-                <p class="text-muted mb-4">
+                <p class="modal-window__text">
                     Please log in or register to continue.
                 </p>
 
-                <div class="d-flex gap-2 justify-content-center">
-                    <button class="btn btn-light border" data-bs-dismiss="modal">
+                <div class="modal-window__actions">
+                    <button type="button" class="modal-window__btn modal-window__btn--secondary" data-close-modal>
                         Cancel
                     </button>
 
-                    <a href="{{ route('login') }}" class="btn btn-dark">
+                    <a href="{{ route('login') }}" class="modal-window__btn modal-window__btn--primary">
                         Log In
                     </a>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

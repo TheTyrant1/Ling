@@ -145,7 +145,7 @@ Route::prefix('personal')->name('personal.')->middleware(['auth', 'verified'])
                     ->group(function () {
                         Route::get('/', PersonalTrashPost\IndexController::class)->name('index');
                         Route::get('{post}', PersonalTrashPost\ShowController::class)->name('show');
-                        Route::delete('{post}/force-delete', PersonalTrashPost\ForceDeleteController::class)->name('force.delete');
+                        Route::delete('{post}/force-delete', PersonalTrashPost\ForceDeleteController::class)->name('force.delete')->withTrashed();
                         Route::delete('/massive-delete', PersonalTrashPost\MassiveDeleteController::class)->name('massive.delete');
                         Route::post('{post}/restore', PersonalTrashPost\RestoreController::class)->name('restore');
                     });

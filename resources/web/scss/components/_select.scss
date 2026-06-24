@@ -1,20 +1,21 @@
 .sort-select {
     position: relative;
     display: inline-block;
-    min-width: 140px;
+    width: 154px;
+    max-width: 100%;
+    height: 44px;
     font-size: 14px;
     font-family: inherit;
 
     &--open {
         .sort-select__trigger {
-            border-color: #2E937A;
-            box-shadow: 0 0 0 3px rgba(46, 147, 122, 0.15);
-            color: #111;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+            color: #0d0d0d;
         }
 
         .sort-select__icon {
             transform: rotate(180deg);
-            color: #2E937A;
+            color: #0d0d0d;
         }
 
         .sort-select__menu {
@@ -37,30 +38,35 @@
     }
 
     &__trigger {
+        box-sizing: border-box;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 12px;
         width: 100%;
-        padding: 0.65rem 1rem;
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        color: #555;
+        height: 44px;
+        padding: 0 14px;
+        background: rgba(255, 255, 255, 0.45);
+        backdrop-filter: blur(14px) saturate(140%);
+        -webkit-backdrop-filter: blur(14px) saturate(140%);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        border-radius: 100px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+        color: #0d0d0d;
         font-size: inherit;
         font-family: inherit;
         cursor: pointer;
         outline: none;
-        transition: border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 
         &:hover {
-            border-color: #bbb;
-            color: #111;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-color: rgba(255, 255, 255, 0.6);
         }
 
         &:focus-visible {
-            border-color: #2E937A;
-            box-shadow: 0 0 0 3px rgba(46, 147, 122, 0.15);
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
         }
     }
 
@@ -81,17 +87,22 @@
 
     &__menu {
         position: absolute;
-        top: calc(100% + 6px);
+        top: calc(100% + 16px);
         left: 0;
-        right: 0;
+        right: auto;
         z-index: 1050;
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
         margin: 0;
-        padding: 6px;
+        padding: 8px;
         list-style: none;
-        background: #fff;
-        border: 1px solid #e5e5e5;
-        border-radius: 10px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 16px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
         opacity: 0;
         visibility: hidden;
         transform: translateY(-6px);
@@ -99,21 +110,25 @@
     }
 
     &__option {
-        padding: 0.55rem 0.85rem;
-        border-radius: 6px;
-        color: #555;
+        display: block;
+        padding: 8px 12px;
+        border-radius: 100px;
+        color: #0d0d0d;
+        font-family: "Roboto", "sans-serif";
+        font-size: 14px;
         cursor: pointer;
-        transition: background-color 0.15s ease, color 0.15s ease;
+        transition: background 0.2s, border-radius 0.2s, color 0.2s;
 
         &:hover,
         &--highlighted {
-            background: rgba(46, 147, 122, 0.08);
-            color: #111;
+            background: rgba(0, 0, 0, 0.05);
+            color: #0d0d0d;
+            border-radius: 100px;
         }
 
         &--selected {
-            background: rgba(46, 147, 122, 0.12);
-            color: #2E937A;
+            background: rgba(0, 0, 0, 0.05);
+            color: #0d0d0d;
             font-weight: 600;
         }
     }
@@ -128,7 +143,7 @@
 
     &--open {
         .profile-select__trigger {
-            box-shadow: 0 0 0 3px rgba(46, 147, 122, 0.15);
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
         }
 
         .profile-select__menu {
@@ -150,7 +165,7 @@
         transition: box-shadow 0.2s ease;
 
         &:focus-visible {
-            box-shadow: 0 0 0 3px rgba(46, 147, 122, 0.15);
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
         }
     }
 
@@ -172,10 +187,12 @@
         margin: 0;
         padding: 6px;
         list-style: none;
-        background: #fff;
-        border: 1px solid #e5e5e5;
-        border-radius: 10px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(24px) saturate(140%);
+        -webkit-backdrop-filter: blur(24px) saturate(140%);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 16px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
         opacity: 0;
         visibility: hidden;
         transform: translateY(-6px);
@@ -189,7 +206,7 @@
     &__divider {
         height: 1px;
         margin: 6px 0;
-        background: #e5e5e5;
+        background: rgba(0, 0, 0, 0.05);
         border: none;
     }
 
@@ -209,8 +226,8 @@
         transition: background-color 0.15s ease, color 0.15s ease;
 
         &:hover {
-            background: rgba(46, 147, 122, 0.08);
-            color: #111;
+            background: rgba(0, 0, 0, 0.05);
+            color: #0d0d0d;
         }
 
         &--danger {

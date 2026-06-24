@@ -11,14 +11,19 @@
 @use "layout/header";
 @use "layout/footer";
 
-//Abstracts
-@use "abstracts/variables";
-
 //Components
 @use "components/loader";
 @use "components/select";
 @use "components/search";
+@use "components/logo";
+@use "components/modal";
+@use "components/cookies";
+@use "components/comments";
+@use "components/post-card";
+@use "components/pager";
 
 //Pages
 @use "pages/main-page";
 @use "pages/tag-page";
+@use "pages/user-page";
+@use "pages/post-show-page";
