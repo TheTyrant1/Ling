@@ -31,27 +31,23 @@ class IndexController extends Controller
             ->with('tags')
             ->limit(5)
             ->get()
-            ->map(function ($post) {
-                return [
-                    'type' => 'post',
-                    'title' => Str::limit($post->title, 35),
-                    'url' => route('post.show', $post->id),
-                    'image' => $post->preview_image ? asset('storage/' . $post->preview_image) : null,
-                    'icon' => 'fa-solid fa-newspaper',
-                ];
-            });
+            ->map(fn($post) => [
+                'type' => 'post',
+                'title' => Str::limit($post->title, 35),
+                'url' => route('post.show', $post),
+                'image' => asset('storage/' . $post->preview_image),
+                'icon' => 'fa-solid fa-newspaper',
+            ]);
 
         $tags = Tag::where('title', 'like', "%{$query}%")
             ->limit(5)
             ->get()
-            ->map(function ($tag) {
-                return [
-                    'type' => 'tag',
-                    'title' => Str::limit($tag->title, 15),
-                    'url' => route('tag.index', $tag->id),
-                    'icon' => 'fa-solid fa-hashtag',
-                ];
-            });
+            ->map(fn($tag) => [
+                'type' => 'tag',
+                'title' => Str::limit($tag->title, 15),
+                'url' => route('tag.index', $tag),
+                'icon' => 'fa-solid fa-hashtag',
+            ]);
 
         $users = User::where('name', 'like', "%{$query}%")
             ->where('status_id', 1)
@@ -60,9 +56,9 @@ class IndexController extends Controller
             ->map(fn($user) => [
                 'type' => 'user',
                 'title' => Str::limit($user->name, 15),
-                'url' => route('user.show', $user->id),
+                'url' => route('user.show', $user),
                 'icon' => 'fa-solid fa-users',
-                'image' => $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/profile_images/user_9307950.png'),
+                'image' => asset('storage/' . $user->profile_image),
             ]);
 
         return response()->json([
@@ -70,6 +66,5 @@ class IndexController extends Controller
             'tags' => $tags,
             'users' => $users
         ]);
-
     }
 }

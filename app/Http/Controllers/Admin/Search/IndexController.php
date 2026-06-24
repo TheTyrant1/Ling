@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class IndexController extends Controller
 {
@@ -50,11 +51,11 @@ class IndexController extends Controller
             ->get()
             ->map(fn($post) => [
                 'type' => 'post',
-                'title' => str($post->title)->limit(35),
-                'subtitle' => str($post->user->name ?? 'Unknown')->limit(15),
-                'url' => route('admin.post.show', $post->id),
+                'title' => Str::limit($post->title, 35),
+                'subtitle' => Str::limit($post->user->name ?? 'Unknown', 15),
+                'url' => route('admin.post.show', $post),
                 'icon' => 'fa-solid fa-newspaper',
-                'image' => $post->preview_image ? asset('storage/' . $post->preview_image) : null,
+                'image' => asset('storage/' . $post->preview_image),
                 'badge' => 'ID: ' . $post->id
             ]);
 
@@ -69,8 +70,8 @@ class IndexController extends Controller
             ->get()
             ->map(fn($tag) => [
                 'type' => 'tag',
-                'title' => str($tag->title)->limit(15),
-                'url' => route('admin.tag.show', $tag->id),
+                'title' => Str::limit($tag->title, 15),
+                'url' => route('admin.tag.show', $tag),
                 'icon' => 'fa-solid fa-hashtag',
                 'badge' => 'ID: ' . $tag->id
             ]);
@@ -86,10 +87,10 @@ class IndexController extends Controller
             ->get()
             ->map(fn($user) => [
                 'type' => 'user',
-                'title' => str($user->name)->limit(15),
-                'url' => route('admin.user.show', $user->id),
+                'title' => Str::limit($user->name, 15),
+                'url' => route('admin.user.show', $user),
                 'icon' => 'fa-solid fa-users',
-                'image' => $user->profile_image ? asset('storage/' . $user->profile_image) : asset('images/profile_images/user_9307950.png'),
+                'image' => asset('storage/' . $user->profile_image),
                 'badge' => 'ID: ' . $user->id
             ]);
 
@@ -113,9 +114,9 @@ class IndexController extends Controller
             ->get()
             ->map(fn($comment) => [
                 'type' => 'comment',
-                'title' => str($comment->message)->limit(25),
-                'subtitle' => str($comment->user->name ?? 'Unknown')->limit(15),
-                'url' => route('admin.comment.show', $comment->id),
+                'title' => Str::limit($comment->message, 25),
+                'subtitle' => Str::limit($comment->user->name ?? 'Unknown', 15),
+                'url' => route('admin.comment.show', $comment),
                 'icon' => 'fa-solid fa-comments',
                 'badge' => 'ID: ' . $comment->id
             ]);
@@ -130,9 +131,9 @@ class IndexController extends Controller
             ->get()
             ->map(fn($appeal) => [
                 'type' => 'appeal',
-                'title' => str($appeal->user_message ?? 'No message')->limit(25),
-                'subtitle' => 'Moderator: ' . str($appeal->admin_message ?? 'No message')->limit(25),
-                'url' => route('admin.appeal.show', $appeal->id),
+                'title' => Str::limit($appeal->user_message ?? 'No message', 25),
+                'subtitle' => 'Moderator: ' . Str::limit($appeal->admin_message ?? 'No message', 25),
+                'url' => route('admin.appeal.show', $appeal),
                 'icon' => 'fa-solid fa-gavel',
                 'badge' => 'ID: ' . $appeal->id
             ]);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Personal\Search;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class IndexController extends Controller
 {
@@ -37,10 +38,10 @@ class IndexController extends Controller
             ->get()
             ->map(fn($following) => [
                 'type' => 'user',
-                'title' => str($following->name)->limit(15),
-                'url' => route('user.show', $following->id),
+                'title' => Str::limit($following->name, 15),
+                'url' => route('user.show', $following),
                 'icon' => 'fa-solid fa-users',
-                'image' => $following->profile_image ? asset('storage/' . $following->profile_image) : asset('images/profile_images/user_9307950.png'),
+                'image' => asset('storage/' . $following->profile_image),
             ]);
 
         $views = $user->viewedPosts()
@@ -54,10 +55,10 @@ class IndexController extends Controller
             ->get()
             ->map(fn($post) => [
                 'type' => 'post',
-                'title' => str($post->title)->limit(35),
-                'url' => route('personal.history.view.show', $post->id),
+                'title' => Str::limit($post->title, 35),
+                'url' => route('personal.history.view.show', $post),
                 'icon' => 'fa-solid fa-eye',
-                'image' => $post->preview_image ? asset('storage/' . $post->preview_image) : null,
+                'image' => asset('storage/' . $post->preview_image),
             ]);
 
         $likes = $user->likedPosts()
@@ -71,10 +72,10 @@ class IndexController extends Controller
             ->get()
             ->map(fn($post) => [
                 'type' => 'post',
-                'title' => str($post->title)->limit(35),
-                'url' => route('personal.history.like.show', $post->id),
+                'title' => Str::limit($post->title, 35),
+                'url' => route('personal.history.like.show', $post),
                 'icon' => 'fa-solid fa-heart',
-                'image' => $post->preview_image ? asset('storage/' . $post->preview_image) : null,
+                'image' => asset('storage/' . $post->preview_image),
             ]);
 
         $saves = $user->savedPosts()
@@ -88,10 +89,10 @@ class IndexController extends Controller
             ->get()
             ->map(fn($post) => [
                 'type' => 'post',
-                'title' => str($post->title)->limit(35),
-                'url' => route('personal.history.save.show', $post->id),
+                'title' => Str::limit($post->title, 35),
+                'url' => route('personal.history.save.show', $post),
                 'icon' => 'fa-solid fa-bookmark',
-                'image' => $post->preview_image ? asset('storage/' . $post->preview_image) : null,
+                'image' => asset('storage/' . $post->preview_image),
             ]);
 
         $comments = $user->comments()
@@ -106,9 +107,9 @@ class IndexController extends Controller
             ->get()
             ->map(fn($comment) => [
                 'type' => 'comment',
-                'title' => str($comment->message)->limit(25),
-                'subtitle' => 'In: ' . str($comment->post->title ?? 'Post')->limit(35),
-                'url' => route('personal.history.comment.show', $comment->id),
+                'title' => Str::limit($comment->message, 25),
+                'subtitle' => 'In: ' . Str::limit($comment->post->title ?? 'Post', 35),
+                'url' => route('personal.history.comment.show', $comment),
                 'icon' => 'fa-solid fa-comment',
             ]);
 
@@ -123,10 +124,10 @@ class IndexController extends Controller
             ->get()
             ->map(fn($post) => [
                 'type' => 'post',
-                'title' => str($post->title)->limit(35),
-                'url' => route('personal.history.post.show', $post->id),
+                'title' => Str::limit($post->title, 35),
+                'url' => route('personal.history.post.show', $post),
                 'icon' => 'fa-solid fa-newspaper',
-                'image' => $post->preview_image ? asset('storage/' . $post->preview_image) : null,
+                'image' => asset('storage/' . $post->preview_image),
             ]);
 
         $appeals = $user->appeals()
@@ -140,8 +141,8 @@ class IndexController extends Controller
             ->get()
             ->map(fn($appeal) => [
                 'type' => 'appeal',
-                'title' => str($appeal->user_message)->limit(25),
-                'url' => route('personal.history.appeal.show', $appeal->id),
+                'title' => Str::limit($appeal->user_message, 25),
+                'url' => route('personal.history.appeal.show', $appeal),
                 'icon' => 'fa-solid fa-gavel',
             ]);
 
