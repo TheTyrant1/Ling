@@ -27,4 +27,4 @@ RUN npm install && npm run build
 
 EXPOSE 80
 
-CMD sh -c "php artisan config:clear && php artisan migrate:fresh --seed --force && apache2-foreground"
+CMD sh -c "php artisan config:clear && php artisan storage:link && chmod -R 775 /var/www/html/storage && chown -R www-data:www-data /var/www/html/storage && php artisan migrate:fresh --seed --force && apache2-foreground"
