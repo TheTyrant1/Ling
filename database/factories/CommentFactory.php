@@ -9,7 +9,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'message' => fake()->sentence(),
+            'message' => $this->faker->sentence(),
         ];
     }
 }

@@ -20,11 +20,11 @@ class PostFactory extends Factory
         ];
 
         return [
-            'title' => fake()->sentence(),
-            'content' => fake()->text(500),
+            'title' => $this->faker->sentence(),
+            'content' => $this->faker->text(500),
 
-            'preview_image' => fake()->randomElement($images),
-            'main_image' => fake()->randomElement($images),
+            'preview_image' => $this->faker->randomElement($images),
+            'main_image' => $this->faker->randomElement($images),
         ];
     }
 }
