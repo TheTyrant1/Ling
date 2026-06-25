@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
     git \
+    nodejs \
+    npm \
     && docker-php-ext-install pdo pdo_pgsql zip bcmath
 
 RUN a2enmod rewrite
@@ -20,6 +22,8 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN composer install --no-dev --optimize-autoloader
+
+RUN npm install && npm run build
 
 EXPOSE 80
 
