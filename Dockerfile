@@ -2,12 +2,16 @@ FROM php:8.4-apache
 
 RUN apt-get update && apt-get install -y \
     libpq-dev \
+    libpng-dev \
     libzip-dev \
+    zip \
     unzip \
     git \
-    nodejs \
-    npm \
-    && docker-php-ext-install pdo pdo_pgsql zip bcmath
+    curl \
+    libicu-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-install pdo_pgsql gd zip bcmath intl
 
 RUN a2enmod rewrite
 
@@ -15,15 +19,20 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
-COPY . /var/www/html
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+WORKDIR /var/www/html
+COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-interaction --prefer-dist --optimize-autoloader
 
 RUN npm install && npm run build
+
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 EXPOSE 80
 
