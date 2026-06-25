@@ -58,14 +58,15 @@
                                                 <td class="border-0 border-top px-4">
                                                     @if($type === 'user')
                                                         <div class="d-flex align-items-center">
-                                                            src="{{ asset('storage/' . $report->reportable->profile_image) }}"
+                                                            <img src="{{ Storage::url($report->reportable->profile_image) }}"
+                                                                 alt="User image" class="me-2 me-md-3 rounded-circle border table-user-image">
                                                             <div class="fw-medium">
                                                                 <span title="{{ $report->reportable->name }}">{{ Str::limit($report->reportable->name, 10) }}</span>
                                                             </div>
                                                         </div>
                                                     @elseif($type === 'post')
                                                         <div class="d-flex align-items-center">
-                                                            <img src="{{ asset('storage/' . $report->reportable->preview_image) }}"
+                                                            <img src="{{ Storage::url($report->reportable->preview_image) }}"
                                                                  alt="Post image" title="Post image" class="me-2 me-md-3 rounded table-post-preview-img">
                                                             <span class="table-title-clamp" title="{{ $report->reportable->title }}">
                                                                 {{ Str::limit($report->reportable->title, 30) }}
@@ -73,7 +74,7 @@
                                                         </div>
                                                     @elseif($type === 'comment')
                                                         <div class="d-flex align-items-center">
-                                                            <img src="{{ $report->reportable->user->profile_image ? asset('storage/' . $report->reportable->user->profile_image) : asset('images/profile_images/user_9307950.png') }}"
+                                                            <img src="{{ Storage::url($report->reportable->user->profile_image) }}"
                                                                  alt="User image" class="me-2 me-md-3 rounded-circle border table-user-image">
                                                             <div class="fw-medium d-flex flex-column">
                                                                 <span title="{{ $report->reportable->user->name }}">{{ Str::limit($report->reportable->user->name, 10) }}:</span>

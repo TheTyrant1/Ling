@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Personal\Search;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class IndexController extends Controller
@@ -41,7 +42,7 @@ class IndexController extends Controller
                 'title' => Str::limit($following->name, 15),
                 'url' => route('user.show', $following),
                 'icon' => 'fa-solid fa-users',
-                'image' => asset('storage/' . $following->profile_image),
+                'image' => Storage::url($following->profile_image),
             ]);
 
         $views = $user->viewedPosts()
@@ -58,7 +59,7 @@ class IndexController extends Controller
                 'title' => Str::limit($post->title, 35),
                 'url' => route('personal.history.view.show', $post),
                 'icon' => 'fa-solid fa-eye',
-                'image' => asset('storage/' . $post->preview_image),
+                'image' => Storage::url($post->preview_image),
             ]);
 
         $likes = $user->likedPosts()
@@ -75,7 +76,7 @@ class IndexController extends Controller
                 'title' => Str::limit($post->title, 35),
                 'url' => route('personal.history.like.show', $post),
                 'icon' => 'fa-solid fa-heart',
-                'image' => asset('storage/' . $post->preview_image),
+                'image' => Storage::url($post->preview_image),
             ]);
 
         $saves = $user->savedPosts()
@@ -92,7 +93,7 @@ class IndexController extends Controller
                 'title' => Str::limit($post->title, 35),
                 'url' => route('personal.history.save.show', $post),
                 'icon' => 'fa-solid fa-bookmark',
-                'image' => asset('storage/' . $post->preview_image),
+                'image' => Storage::url($post->preview_image),
             ]);
 
         $comments = $user->comments()
@@ -127,7 +128,7 @@ class IndexController extends Controller
                 'title' => Str::limit($post->title, 35),
                 'url' => route('personal.history.post.show', $post),
                 'icon' => 'fa-solid fa-newspaper',
-                'image' => asset('storage/' . $post->preview_image),
+                'image' => Storage::url($post->preview_image),
             ]);
 
         $appeals = $user->appeals()

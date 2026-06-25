@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Personal\History\Report;
 
 use App\Models\Comment;
 use App\Models\Post;
-use App\Models\Report;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,23 +11,19 @@ class IndexController
 {
     public function __invoke(Request $request)
     {
-        $query = auth()->user()->reports();
+        $type = $request->input('type', 'user');
 
-        $type = $request->type ?? 'user';
+        $map = [
+            'user'    => User::class,
+            'post'    => Post::class,
+            'comment' => Comment::class,
+        ];
 
-        switch ($type) {
-            case 'post':
-                $query->where('reportable_type', Post::class);
-                break;
+        $modelClass = $map[$type] ?? User::class;
 
-            case 'comment':
-                $query->where('reportable_type', Comment::class);
-                break;
+        $query = auth()->user()->reports()->where('reportable_type', $modelClass);
 
-            default:
-                $query->where('reportable_type', User::class);
-                break;
-        }
+        $query->whereHasMorph('reportable', [$modelClass]);
 
         $reports = $query->paginate(10);
 

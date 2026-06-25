@@ -80,7 +80,7 @@
                                                 <td class="border-0 border-top px-4">
                                                     <div class="d-flex align-items-center">
                                                         <img
-                                                            src="{{ asset('storage/' . $post->user->profile_image) }}"
+                                                            src="{{ Storage::url($post->user->profile_image) }}"
                                                             alt="User image"
                                                             title="User image"
                                                             class="me-2 me-md-3 rounded-circle border table-user-image">
@@ -92,7 +92,7 @@
                                                 </td>
                                                 <td class="border-0 border-top px-4">
                                                     <div class="d-flex align-items-center">
-                                                        <img src="{{ asset('storage/' . $post->preview_image) }}"
+                                                        <img src="{{ Storage::url($post->preview_image) }}"
                                                              alt="Post image"
                                                              title="Post image"
                                                              class="me-2 me-md-3 rounded table-post-preview-img">

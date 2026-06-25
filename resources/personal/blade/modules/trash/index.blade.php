@@ -75,7 +75,7 @@
                                             <tr class="align-middle">
                                                 <td class="border-0 border-top px-4">
                                                     <div class="d-flex align-items-center">
-                                                        <img src="{{ asset('storage/' . $post->preview_image) }}"
+                                                        <img src="{{ Storage::url($post->preview_image) }}"
                                                              alt="Post image"
                                                              title="Post image"
                                                              class="me-2 me-md-3 rounded table-post-preview-img">

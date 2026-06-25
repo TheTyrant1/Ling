@@ -43,7 +43,7 @@
                                         <td class="border-0 border-top px-4">{{ Str::limit($user->id, 5) }}</td>
                                         <td class="border-0 border-top px-4">
                                             <img
-                                                src="{{ asset('storage/' . $user->profile_image) }}"
+                                                src="{{ Storage::url($user->profile_image) }}"
                                                 alt="User image"
                                                 title="User image"
                                                 class="me-2 me-md-3 rounded-circle border table-user-image">

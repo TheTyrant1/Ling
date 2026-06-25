@@ -10,7 +10,7 @@
         <div class="user-page__container">
 
             <div class="user-page__profile" data-aos="fade-up">
-                <img src="{{ asset('storage/' . $user->profile_image) }}" alt="User image" class="user-page__avatar">
+                <img src="{{ Storage::url($user->profile_image) }}" alt="User image" class="user-page__avatar">
                 <div class="user-page__name-wrapper">
                     <div class="user-page__name" title="{{ $user->name }}">{{ Str::limit($user->name, 15) }}</div>
 
@@ -82,11 +82,11 @@
                             <article class="post-card">
                                 <div class="post-card__media">
                                     <a href="{{ route('user.show', $post->user->id) }}" class="post-card__author">
-                                        <img src="{{ asset('storage/' . $post->user->profile_image) }}" alt="User image">
+                                        <img src="{{ Storage::url($post->user->profile_image) }}" alt="User image">
                                         <span title="{{ $post->user->name }}">{{ Str::limit($post->user->name, 10) }}</span>
                                     </a>
                                     <a href="{{ route('post.show', $post->id) }}" class="post-card__image-link">
-                                        <img src="{{ asset('storage/' . $post->preview_image) }}" alt="{{ $post->title }}" class="post-card__image">
+                                        <img src="{{ Storage::url($post->preview_image) }}" alt="{{ $post->title }}" class="post-card__image">
                                     </a>
                                 </div>
 

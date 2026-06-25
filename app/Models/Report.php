@@ -23,7 +23,7 @@ class Report extends Model
     {
         return match (true) {
             $this->reportable instanceof \App\Models\User
-            => route('profile.show', $this->reportable->id),
+            => route('user.show', $this->reportable->id),
 
             $this->reportable instanceof \App\Models\Post
             => route('post.show', $this->reportable->id),

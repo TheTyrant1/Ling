@@ -46,7 +46,7 @@
                                                 <td class="border-0 border-top px-4">
                                                     <div class="d-flex align-items-center">
                                                         <img
-                                                            src="{{ asset('storage/' . $user->profile_image) }}"
+                                                            src="{{ Storage::url($user->profile_image) }}"
                                                             alt="User image"
                                                             title="User image"
                                                             class="me-2 me-md-3 rounded-circle border table-user-image">

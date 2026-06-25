@@ -12,7 +12,7 @@
         <div class="comment-node__avatar-link">
             <a href="{{ route('user.show', $comment->user->id) }}">
                 <img
-                    src="{{ asset('storage/' . $comment->user->profile_image) }}"
+                    src="{{ Storage::url($comment->user->profile_image) }}"
                     class="comment-node__avatar" alt="User profile">
             </a>
         </div>

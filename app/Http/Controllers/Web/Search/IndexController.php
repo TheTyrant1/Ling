@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class IndexController extends Controller
@@ -35,7 +36,7 @@ class IndexController extends Controller
                 'type' => 'post',
                 'title' => Str::limit($post->title, 35),
                 'url' => route('post.show', $post),
-                'image' => asset('storage/' . $post->preview_image),
+                'image' => Storage::url($post->preview_image),
                 'icon' => 'fa-solid fa-newspaper',
             ]);
 
@@ -58,7 +59,7 @@ class IndexController extends Controller
                 'title' => Str::limit($user->name, 15),
                 'url' => route('user.show', $user),
                 'icon' => 'fa-solid fa-users',
-                'image' => asset('storage/' . $user->profile_image),
+                'image' => Storage::url($user->profile_image),
             ]);
 
         return response()->json([

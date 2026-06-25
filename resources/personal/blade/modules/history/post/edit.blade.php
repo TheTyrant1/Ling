@@ -50,7 +50,7 @@
                             <div class="form-group mb-4">
                                 <label class="form-label">Add preview image</label>
                                 <div class="mb-4">
-                                    <img src="{{ asset( 'storage/' . $post->preview_image) }}" alt="preview_image" class="rounded img-fluid">
+                                    <img src="{{ Storage::url($post->preview_image) }}" alt="preview_image" class="rounded img-fluid">
                                 </div>
                                 <div class="input-group">
                                     <input
@@ -70,7 +70,7 @@
                             <div class="form-group mb-4">
                                 <label class="form-label">Add main image</label>
                                 <div class="mb-4">
-                                    <img src="{{ asset( 'storage/' . $post->main_image) }}" alt="main_image" class="rounded img-fluid">
+                                    <img src="{{ Storage::url($post->main_image) }}" alt="main_image" class="rounded img-fluid">
                                 </div>
                                 <div class="input-group">
                                     <input

@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class IndexController extends Controller
@@ -55,7 +56,7 @@ class IndexController extends Controller
                 'subtitle' => Str::limit($post->user->name ?? 'Unknown', 15),
                 'url' => route('admin.post.show', $post),
                 'icon' => 'fa-solid fa-newspaper',
-                'image' => asset('storage/' . $post->preview_image),
+                'image' => Storage::url($post->preview_image),
                 'badge' => 'ID: ' . $post->id
             ]);
 
@@ -90,7 +91,7 @@ class IndexController extends Controller
                 'title' => Str::limit($user->name, 15),
                 'url' => route('admin.user.show', $user),
                 'icon' => 'fa-solid fa-users',
-                'image' => asset('storage/' . $user->profile_image),
+                'image' => Storage::url($user->profile_image),
                 'badge' => 'ID: ' . $user->id
             ]);
 

@@ -57,7 +57,7 @@
                                                     <div class="d-flex align-items-center">
                                                         @if($notification->fromUser)
                                                             <img
-                                                                src="{{ asset('storage/' . $notification->fromUser->profile_image) }}"
+                                                                src="{{ Storage::url($notification->fromUser->profile_image) }}"
                                                                 alt="User image"
                                                                 class="me-2 me-md-3 rounded-circle border table-user-image">
                                                         @else
@@ -153,7 +153,7 @@
                                                     <div class="d-flex align-items-center">
                                                         @if($notification->post)
                                                             <img
-                                                                src="{{ asset('storage/' . $notification->post->preview_image) }}"
+                                                                src="{{ Storage::url($notification->post->preview_image) }}"
                                                                 alt="Post image"
                                                                 title="Post image"
                                                                 class="me-2 me-md-3 rounded table-post-preview-img">

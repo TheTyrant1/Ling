@@ -119,7 +119,7 @@
                     <a class="nav-link dropdown-toggle d-flex align-items-center app-header__avatar-link" href="#" id="userMenuButton"
                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img
-                            src="{{ asset('storage/' . auth()->user()->profile_image) }}"
+                            src="{{ Storage::url(auth()->user()->profile_image) }}"
                             alt="User image"
                             class="app-header__avatar-img">
                     </a>

@@ -60,7 +60,7 @@
                 @auth()
                     <div class="user-profile">
                         <button class="user-profile__avatar-btn" id="avatarBtn">
-                            <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="User image"
+                            <img src="{{ Storage::url(auth()->user()->profile_image) }}" alt="User image"
                                  class="user-profile__avatar">
                         </button>
                     </div>

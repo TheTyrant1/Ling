@@ -16,7 +16,7 @@
                                     @method('PATCH')
 
                                     <div class="position-relative d-inline-block mb-3">
-                                        <img src="{{ asset('storage/' . $user->profile_image) }}"
+                                        <img src="{{ Storage::url($user->profile_image) }}"
                                              alt="User image"
                                              title="User image"
                                              class="img-fluid rounded-circle user-profile-image avatar-preview">

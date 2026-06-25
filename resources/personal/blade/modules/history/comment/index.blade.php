@@ -61,7 +61,7 @@
                                                 <td class="border-0 border-top px-4">
                                                     <div class="d-flex align-items-center gap-2">
                                                         <img
-                                                            src="{{ asset('storage/' . $comment->user->profile_image) }}"
+                                                            src="{{ Storage::url($comment->user->profile_image) }}"
                                                             alt="User image"
                                                             class="rounded-circle border table-user-image"
                                                         >
@@ -80,7 +80,7 @@
                                                 <td class="border-0 border-top px-4">
                                                     <div class="d-flex align-items-center">
                                                         <img
-                                                            src="{{ asset('storage/' . $comment->post->preview_image) }}"
+                                                            src="{{ Storage::url($comment->post->preview_image) }}"
                                                             alt="Post image"
                                                             title="Post image"
                                                             class="me-2 me-md-3 rounded table-post-preview-img">

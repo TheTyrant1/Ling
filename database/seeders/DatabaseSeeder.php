@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
             AppealStatusSeeder::class,
             AppealTypeSeeder::class,
             UserSeeder::class,
-            PostSeeder::class,
             TagSeeder::class,
+            PostSeeder::class,
             CommentSeeder::class
         ]);
     }

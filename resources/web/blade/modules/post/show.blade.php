@@ -14,7 +14,7 @@
                 </h1>
                 <a href="{{ route('user.show', $post->user->id) }}" class="post-show__author-link">
                     <div class="post-show__author-badge">
-                        <img src="{{ asset('storage/' . $post->user->profile_image) }}" alt="User image">
+                        <img src="{{ Storage::url($post->user->profile_image) }}" alt="User image">
                         <span title="{{ $post->user->name }}">
                             {{ Str::limit($post->user->name, 17) }}
                         </span>
@@ -46,7 +46,7 @@
                 @endif
 
                 <div class="post-show__image-wrapper">
-                    <img src="{{ asset('storage/' . $post->main_image) }}" class="post-show__image"
+                    <img src="{{ Storage::url($post->main_image) }}" class="post-show__image"
                          alt="{{ $post->title }}">
                 </div>
             </section>
@@ -134,7 +134,7 @@
                         @foreach($relatedPosts as $relatedPost)
                             <a href="{{ route('post.show', $relatedPost->id) }}" class="post-show__related-card">
                                 <div class="post-show__related-img">
-                                    <img src="{{ asset('storage/' . $relatedPost->preview_image) }}"
+                                    <img src="{{ Storage::url($relatedPost->preview_image) }}"
                                          alt="related post">
                                 </div>
 
