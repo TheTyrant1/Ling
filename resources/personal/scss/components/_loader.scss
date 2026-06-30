@@ -23,8 +23,8 @@
     height: 50px;
     border-radius: 50%;
 
-    border: 5px solid rgb(255, 255, 255);
-    border-top-color:  #212529FF;
+    border: 5px solid var(--bs-secondary-bg);
+    border-top-color: var(--bs-primary);
 
     animation: loader-spin 0.75s linear infinite;
 }

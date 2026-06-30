@@ -12,22 +12,49 @@
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)"/>
 
     <script>
-        const storedTheme = localStorage.getItem('theme');
+        (function () {
+            const storedTheme = localStorage.getItem('theme');
+            let theme = storedTheme;
+            if (!theme || theme === 'auto') {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.setAttribute('data-bs-theme', theme);
 
-        const faviconLight = "{{ asset('assets/personal/images/favicon/favicon-light.svg') }}";
-        const faviconDark = "{{ asset('assets/personal/images/favicon/favicon-dark.svg') }}";
-
-        if (storedTheme) {
-            document.documentElement.setAttribute('data-bs-theme', storedTheme);
+            const faviconLight = "{{ asset('assets/personal/images/favicon/favicon-light.svg') }}";
+            const faviconDark = "{{ asset('assets/personal/images/favicon/favicon-dark.svg') }}";
 
             window.addEventListener('DOMContentLoaded', () => {
                 const favicon = document.getElementById('app-favicon');
                 if (favicon) {
-                    favicon.href = storedTheme === 'dark' ? faviconDark : faviconLight;
+                    favicon.href = theme === 'dark' ? faviconDark : faviconLight;
                 }
             });
-        }
+        })();
     </script>
+
+    <style>
+        /* Prevents white/unthemed flash during page load before CSS is loaded and parsed */
+        html[data-bs-theme="dark"] {
+            background-color: #212529 !important;
+        }
+        html[data-bs-theme="light"] {
+            background-color: #f8f9fa !important;
+        }
+        .app-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        html[data-bs-theme="dark"] .app-loader {
+            background-color: #212529 !important;
+        }
+        html[data-bs-theme="light"] .app-loader {
+            background-color: #f8f9fa !important;
+        }
+    </style>
 
     @vite(['resources/personal/scss/app.scss', 'resources/personal/js/app.js'])
 </head>
